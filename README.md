@@ -1,1 +1,1 @@
-# MinhaEscola
+# VitrineEscolar
