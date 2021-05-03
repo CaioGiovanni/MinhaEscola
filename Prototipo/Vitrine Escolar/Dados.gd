@@ -40,6 +40,7 @@ func _ready():
 	seccoes["Home"] = $Vitrine/Home
 	seccoes["Quarry"] = $Vitrine/Quarry
 	seccoes["School"] = $Vitrine/School
+	seccoes["Sing Up"] = $Vitrine/SingUp
 	print(seccoes["Home"])
 	
 	## O histórico de navegação é atualizado
@@ -262,3 +263,8 @@ func _on_Escola5_pressed():
 
 func _on_Escola6_pressed():
 	_on_Any_escola(5)
+
+
+func _on_Cadastro_pressed():
+	self.paginas.append("Sing Up")
+	pagina()

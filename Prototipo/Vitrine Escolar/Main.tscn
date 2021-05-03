@@ -136,6 +136,17 @@ margin_right = 159.0
 margin_bottom = 48.0
 text = "OK"
 
+[node name="Cadastro" type="Button" parent="Vitrine/Credenciais"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 49.0
+margin_right = 159.0
+margin_bottom = 69.0
+text = "Cadastre-se"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Busca" type="Control" parent="Vitrine"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -662,6 +673,7 @@ __meta__ = {
 }
 
 [node name="Home" type="Control" parent="Vitrine"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -511.0
@@ -1059,6 +1071,166 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SingUp" type="Control" parent="Vitrine"]
+margin_left = 51.0
+margin_top = 202.0
+margin_right = 1077.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Login" type="Control" parent="Vitrine/SingUp"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Vitrine/SingUp/Login"]
+margin_left = 239.0
+margin_top = 170.0
+margin_right = 482.0
+margin_bottom = 194.0
+placeholder_text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit2" type="LineEdit" parent="Vitrine/SingUp/Login"]
+margin_left = 239.0
+margin_top = 202.0
+margin_right = 482.0
+margin_bottom = 226.0
+secret = true
+placeholder_text = "Senha"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Vitrine/SingUp/Login/LineEdit2"]
+margin_top = 33.0
+margin_right = 243.0
+margin_bottom = 80.0
+text = "Login"
+
+[node name="Login2" type="Control" parent="Vitrine/SingUp"]
+margin_left = 250.0
+margin_top = -100.0
+margin_right = 290.0
+margin_bottom = -60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 170.0
+margin_right = 482.0
+margin_bottom = 194.0
+placeholder_text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit2" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 202.0
+margin_right = 482.0
+margin_bottom = 226.0
+secret = true
+placeholder_text = "Senha"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit3" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 251.2
+margin_right = 482.0
+margin_bottom = 275.2
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit4" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 278.186
+margin_right = 482.0
+margin_bottom = 302.186
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit5" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 306.759
+margin_right = 482.0
+margin_bottom = 330.759
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit6" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 333.745
+margin_right = 482.0
+margin_bottom = 357.745
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit7" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 363.905
+margin_right = 482.0
+margin_bottom = 387.905
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit8" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 390.891
+margin_right = 482.0
+margin_bottom = 414.891
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit9" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 419.464
+margin_right = 482.0
+margin_bottom = 443.464
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit10" type="LineEdit" parent="Vitrine/SingUp/Login2"]
+margin_left = 239.0
+margin_top = 446.45
+margin_right = 482.0
+margin_bottom = 470.45
+placeholder_text = "Informação"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Vitrine/SingUp/Login2"]
+margin_left = 238.0
+margin_top = 478.0
+margin_right = 480.0
+margin_bottom = 545.0
+text = "Cadastrar"
+
 [node name="Control" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -1088,6 +1260,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="Vitrine/Logo/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Vitrine/Credenciais/Cadastro" to="." method="_on_Cadastro_pressed"]
 [connection signal="pressed" from="Vitrine/Busca/busc" to="." method="_on_busc_pressed"]
 [connection signal="pressed" from="Vitrine/Busca/HBoxContainer/alfa" to="." method="_on_alfa_pressed"]
 [connection signal="pressed" from="Vitrine/Busca/HBoxContainer/fun" to="." method="_on_fun_pressed"]
