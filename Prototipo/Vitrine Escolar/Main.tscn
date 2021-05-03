@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Vitrine Escolar.png" type="Texture" id=1]
 [ext_resource path="res://BackGround 2.png" type="Texture" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Fotos/Ana Rosa/1.jpg" type="Texture" id=7]
 [ext_resource path="res://estrela.png" type="Texture" id=8]
 [ext_resource path="res://polica.png" type="Texture" id=9]
+[ext_resource path="res://Fotos/Ana Rosa/5.jpg" type="Texture" id=10]
+[ext_resource path="res://Fotos/Ana Rosa/4.jpg" type="Texture" id=11]
+[ext_resource path="res://Fotos/Ana Rosa/2.jpg" type="Texture" id=12]
+[ext_resource path="res://Fotos/Ana Rosa/6.jpg" type="Texture" id=13]
+[ext_resource path="res://Fotos/Ana Rosa/3.jpg" type="Texture" id=14]
 
 [sub_resource type="Theme" id=1]
 
@@ -197,6 +202,7 @@ margin_bottom = 40.0
 text = "Profissionalizante"
 
 [node name="Quarry" type="Control" parent="Vitrine"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -511.0
@@ -409,8 +415,253 @@ margin_right = 162.0
 margin_bottom = 32.0
 text = "Página"
 
+[node name="Entradas" type="Control" parent="Vitrine/Quarry"]
+margin_top = 202.0
+margin_right = 1023.0
+margin_bottom = 400.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrada" type="Control" parent="Vitrine/Quarry/Entradas"]
+margin_right = 1026.0
+margin_bottom = 195.0
+
+[node name="Foto" type="TextureRect" parent="Vitrine/Quarry/Entradas/Entrada"]
+margin_right = 195.0
+margin_bottom = 195.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escola" type="Button" parent="Vitrine/Quarry/Entradas/Entrada"]
+modulate = Color( 0.0509804, 0.027451, 0.333333, 1 )
+margin_left = 204.0
+margin_right = 614.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/Quarry/Entradas/Entrada"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 200.0
+visible_characters = 140
+text = "asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf asdf
+asdf asdf as"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrada2" type="Control" parent="Vitrine/Quarry/Entradas"]
+margin_top = 200.0
+margin_right = 1026.0
+margin_bottom = 395.0
+
+[node name="Foto" type="TextureRect" parent="Vitrine/Quarry/Entradas/Entrada2"]
+margin_right = 195.0
+margin_bottom = 195.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escola" type="Button" parent="Vitrine/Quarry/Entradas/Entrada2"]
+modulate = Color( 0.0509804, 0.027451, 0.333333, 1 )
+margin_left = 204.0
+margin_right = 614.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/Quarry/Entradas/Entrada2"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 200.0
+visible_characters = 140
+text = "asfasf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrada3" type="Control" parent="Vitrine/Quarry/Entradas"]
+margin_top = 400.0
+margin_right = 1026.0
+margin_bottom = 595.0
+
+[node name="Foto" type="TextureRect" parent="Vitrine/Quarry/Entradas/Entrada3"]
+margin_right = 195.0
+margin_bottom = 195.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escola" type="Button" parent="Vitrine/Quarry/Entradas/Entrada3"]
+modulate = Color( 0.0509804, 0.027451, 0.333333, 1 )
+margin_left = 204.0
+margin_right = 614.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/Quarry/Entradas/Entrada3"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 200.0
+visible_characters = 140
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrada4" type="Control" parent="Vitrine/Quarry/Entradas"]
+margin_top = 600.0
+margin_right = 1026.0
+margin_bottom = 795.0
+
+[node name="Foto" type="TextureRect" parent="Vitrine/Quarry/Entradas/Entrada4"]
+margin_right = 195.0
+margin_bottom = 195.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escola" type="Button" parent="Vitrine/Quarry/Entradas/Entrada4"]
+modulate = Color( 0.0509804, 0.027451, 0.333333, 1 )
+margin_left = 204.0
+margin_right = 614.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/Quarry/Entradas/Entrada4"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 200.0
+visible_characters = 140
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrada5" type="Control" parent="Vitrine/Quarry/Entradas"]
+margin_top = 800.0
+margin_right = 1026.0
+margin_bottom = 995.0
+
+[node name="Foto" type="TextureRect" parent="Vitrine/Quarry/Entradas/Entrada5"]
+margin_right = 195.0
+margin_bottom = 195.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escola" type="Button" parent="Vitrine/Quarry/Entradas/Entrada5"]
+modulate = Color( 0.0509804, 0.027451, 0.333333, 1 )
+margin_left = 204.0
+margin_right = 614.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/Quarry/Entradas/Entrada5"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 200.0
+visible_characters = 140
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Entrada6" type="Control" parent="Vitrine/Quarry/Entradas"]
+margin_top = 1000.0
+margin_right = 1026.0
+margin_bottom = 1195.0
+
+[node name="Foto" type="TextureRect" parent="Vitrine/Quarry/Entradas/Entrada6"]
+margin_right = 195.0
+margin_bottom = 195.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escola" type="Button" parent="Vitrine/Quarry/Entradas/Entrada6"]
+modulate = Color( 0.0509804, 0.027451, 0.333333, 1 )
+margin_left = 204.0
+margin_right = 614.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/Quarry/Entradas/Entrada6"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 200.0
+visible_characters = 140
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Home" type="Control" parent="Vitrine"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -511.0
@@ -461,9 +712,10 @@ __meta__ = {
 [node name="Qualidade" type="Control" parent="Vitrine/Home/Escola"]
 margin_left = 550.0
 margin_top = 40.0
-margin_right = 590.0
-margin_bottom = 80.0
+margin_right = 2464.0
+margin_bottom = 681.0
 rect_scale = Vector2( 0.04, 0.04 )
+hint_tooltip = "Ideb"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -488,9 +740,10 @@ texture = ExtResource( 8 )
 [node name="Qualidade2" type="Control" parent="Vitrine/Home/Escola"]
 margin_left = 800.0
 margin_top = 40.0
-margin_right = 840.0
-margin_bottom = 80.0
+margin_right = 2678.0
+margin_bottom = 699.0
 rect_scale = Vector2( 0.04, 0.04 )
+hint_tooltip = "Qualidade"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -515,9 +768,10 @@ texture = ExtResource( 8 )
 [node name="Seguranca" type="Control" parent="Vitrine/Home/Escola"]
 margin_left = 673.0
 margin_top = 40.0
-margin_right = 713.0
-margin_bottom = 80.0
+margin_right = 2198.0
+margin_bottom = 561.0
 rect_scale = Vector2( 0.05, 0.05 )
+hint_tooltip = "Segurança"
 
 [node name="TextureRect" type="TextureRect" parent="Vitrine/Home/Escola/Seguranca"]
 margin_right = 40.0
@@ -536,6 +790,13 @@ margin_right = 1548.13
 margin_bottom = 512.0
 texture = ExtResource( 9 )
 
+[node name="Control" type="Control" parent="Vitrine/Home/Escola"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="School" type="Control" parent="Vitrine"]
 visible = false
 anchor_left = 0.5
@@ -544,6 +805,256 @@ margin_left = -511.0
 margin_top = 200.0
 margin_right = 512.0
 margin_bottom = 799.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fotos" type="Control" parent="Vitrine/School"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Vitrine/School/Fotos"]
+margin_right = 400.0
+margin_bottom = 400.0
+color = Color( 0.854902, 0.870588, 0.117647, 0.211765 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grande" type="TextureRect" parent="Vitrine/School/Fotos"]
+margin_right = 400.0
+margin_bottom = 400.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thumb" type="Control" parent="Vitrine/School/Fotos"]
+margin_top = 400.0
+margin_right = 40.0
+margin_bottom = 440.0
+
+[node name="TextureRect" type="TextureRect" parent="Vitrine/School/Fotos/Thumb"]
+margin_right = 50.0
+margin_bottom = 50.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 7
+
+[node name="TextureRect2" type="TextureRect" parent="Vitrine/School/Fotos/Thumb"]
+margin_left = 50.0
+margin_right = 100.0
+margin_bottom = 50.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Vitrine/School/Fotos/Thumb"]
+margin_left = 100.0
+margin_right = 150.0
+margin_bottom = 50.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="Vitrine/School/Fotos/Thumb"]
+margin_left = 150.0
+margin_right = 200.0
+margin_bottom = 50.0
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect5" type="TextureRect" parent="Vitrine/School/Fotos/Thumb"]
+margin_left = 200.0
+margin_right = 250.0
+margin_bottom = 50.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect6" type="TextureRect" parent="Vitrine/School/Fotos/Thumb"]
+margin_left = 250.0
+margin_right = 300.0
+margin_bottom = 50.0
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overview" type="Control" parent="Vitrine/School"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nome" type="Label" parent="Vitrine/School/Overview"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 403.0
+margin_top = 6.0
+margin_right = 713.0
+margin_bottom = 23.0
+rect_scale = Vector2( 2, 2 )
+text = "Escola"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Qualidade3" type="Control" parent="Vitrine/School/Overview"]
+margin_left = 550.0
+margin_top = 40.0
+margin_right = 2464.0
+margin_bottom = 681.0
+rect_scale = Vector2( 0.04, 0.04 )
+hint_tooltip = "Ideb"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Vitrine/School/Overview/Qualidade3"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 8 )
+
+[node name="TextureRect2" type="TextureRect" parent="Vitrine/School/Overview/Qualidade3"]
+margin_left = 650.265
+margin_right = 1290.27
+margin_bottom = 640.0
+texture = ExtResource( 8 )
+
+[node name="TextureRect3" type="TextureRect" parent="Vitrine/School/Overview/Qualidade3"]
+margin_left = 1303.53
+margin_right = 1943.53
+margin_bottom = 640.0
+texture = ExtResource( 8 )
+
+[node name="Qualidade4" type="Control" parent="Vitrine/School/Overview"]
+margin_left = 800.0
+margin_top = 40.0
+margin_right = 2678.0
+margin_bottom = 699.0
+rect_scale = Vector2( 0.04, 0.04 )
+hint_tooltip = "Qualidade"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Vitrine/School/Overview/Qualidade4"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 8 )
+
+[node name="TextureRect2" type="TextureRect" parent="Vitrine/School/Overview/Qualidade4"]
+margin_left = 650.265
+margin_right = 1290.27
+margin_bottom = 640.0
+texture = ExtResource( 8 )
+
+[node name="TextureRect3" type="TextureRect" parent="Vitrine/School/Overview/Qualidade4"]
+margin_left = 1303.53
+margin_right = 1943.53
+margin_bottom = 640.0
+texture = ExtResource( 8 )
+
+[node name="Seguranca2" type="Control" parent="Vitrine/School/Overview"]
+margin_left = 673.0
+margin_top = 40.0
+margin_right = 2198.0
+margin_bottom = 561.0
+rect_scale = Vector2( 0.05, 0.05 )
+hint_tooltip = "Segurança"
+
+[node name="TextureRect" type="TextureRect" parent="Vitrine/School/Overview/Seguranca2"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 9 )
+
+[node name="TextureRect2" type="TextureRect" parent="Vitrine/School/Overview/Seguranca2"]
+margin_left = 516.239
+margin_right = 1028.24
+margin_bottom = 512.0
+texture = ExtResource( 9 )
+
+[node name="TextureRect3" type="TextureRect" parent="Vitrine/School/Overview/Seguranca2"]
+margin_left = 1036.13
+margin_right = 1548.13
+margin_bottom = 512.0
+texture = ExtResource( 9 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Vitrine/School/Overview"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 416.0
+margin_top = 83.0
+margin_right = 1025.0
+margin_bottom = 399.0
+text = "Endereço:
+Telefone:
+Turnos:
+Outras coisas importantes."
+
+[node name="Descricao" type="RichTextLabel" parent="Vitrine/School"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 490.0
+margin_right = 1029.0
+margin_bottom = 798.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel pulvinar nulla. Sed nulla ipsum, fermentum eu quam sed, pellentesque fringilla sapien. Vivamus ut suscipit tortor. Aenean fermentum tincidunt elit, eu sagittis nunc facilisis sit amet. Donec id aliquam metus, euismod laoreet urna. Morbi ultricies ut risus vel tincidunt. Vivamus consectetur massa nec aliquam cursus. Ut vulputate lorem vel nisi condimentum iaculis. Sed a neque posuere, dapibus erat in, mollis dui. Integer sodales finibus porttitor. Sed lacinia tempus dui. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Comentário" type="RichTextLabel" parent="Vitrine/School"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = -1.0
+margin_top = 1003.0
+margin_right = 1028.0
+margin_bottom = 1037.0
+text = "Joao:
+	O professor de química é corno."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Comentário2" type="RichTextLabel" parent="Vitrine/School"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = -1.0
+margin_top = 1052.0
+margin_right = 1028.0
+margin_bottom = 1096.0
+text = "Joao:
+	O professor de química é corno."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Comentário3" type="RichTextLabel" parent="Vitrine/School"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = -1.0
+margin_top = 1096.0
+margin_right = 1028.0
+margin_bottom = 1158.0
+text = "Joao:
+	O professor de química é corno."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -583,3 +1094,10 @@ __meta__ = {
 [connection signal="pressed" from="Vitrine/Busca/HBoxContainer/funn" to="." method="_on_funn_pressed"]
 [connection signal="pressed" from="Vitrine/Busca/HBoxContainer/medio" to="." method="_on_medio_pressed"]
 [connection signal="pressed" from="Vitrine/Busca/HBoxContainer/prof" to="." method="_on_prof_pressed"]
+[connection signal="pressed" from="Vitrine/Quarry/Entradas/Entrada/Escola" to="." method="_on_Escola1_pressed"]
+[connection signal="pressed" from="Vitrine/Quarry/Entradas/Entrada2/Escola" to="." method="_on_Escola2_pressed"]
+[connection signal="pressed" from="Vitrine/Quarry/Entradas/Entrada3/Escola" to="." method="_on_Escola3_pressed"]
+[connection signal="pressed" from="Vitrine/Quarry/Entradas/Entrada4/Escola" to="." method="_on_Escola4_pressed"]
+[connection signal="pressed" from="Vitrine/Quarry/Entradas/Entrada5/Escola" to="." method="_on_Escola5_pressed"]
+[connection signal="pressed" from="Vitrine/Quarry/Entradas/Entrada6/Escola" to="." method="_on_Escola6_pressed"]
+[connection signal="pressed" from="Vitrine/Home/Escola/Escola" to="." method="_on_Home_Escola_pressed"]

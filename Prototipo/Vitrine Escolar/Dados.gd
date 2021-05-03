@@ -57,6 +57,12 @@ func _ready():
 	## A página é atualizada
 	pagina()
 
+## Encontra a escola pelo nome
+func encontrarEscola(s):
+	for i in range(len(escolas)):
+		if (escolas[i]['nome'] == s):
+			return i
+	return -1
 
 ##	Essa função atualiza a página
 func pagina():
@@ -80,6 +86,48 @@ func pagina():
 		es.find_node("Foto").set_texture(tx)
 		es.find_node("Escola").set_text(escolas[destaque]["nome"])
 		es.find_node("Texto").set_text(escolas[destaque]["descricao"])
+	
+	## Injeta informações na seção School
+	if (at[0] == "School"):
+#		var esl = encontrarEscola(at[1])
+		var esl = escolas[int(at[1])]
+		var es = seccoes[at[0]]
+		es.find_node("Overview").find_node("Nome").text = esl["nome"]
+		es.find_node("Descricao").text = esl["descricao"]
+		
+		# Encontra as fotos e substitui.
+		var foto = es.find_node("Fotos").find_node("Grande")
+		var tb = es.find_node("Fotos").find_node("Thumb").get_children()
+		var pt = esl["foto"]
+		var fd = pt.split("1")
+		
+		var dr = Directory.new()
+		var fl = []
+		dr.open(fd[0])
+		dr.list_dir_begin(true)
+		var fn = dr.get_next()
+		while fn != "":
+			if not fn.ends_with("import"):
+				fl.append(load(fd[0]+fn))
+			fn = dr.get_next()
+		dr.list_dir_end()
+		print(fl)
+		
+		for i in range(len(tb)):
+			if i < (len(fl)):
+				tb[i].texture = fl[i]
+				tb[i].show()
+			else:
+				tb[i].hide()
+				
+		foto.texture = fl[0]
+	
+	if (at[0] == "Quarry"):
+		var ls = seccoes[at[0]].find_node("Entradas").get_children()
+		for i in range(len(ls)):
+			ls[i].find_node("Foto").texture = load(escolas[i]["foto"])
+			ls[i].find_node("Descricao").text = escolas[i]["descricao"]
+			ls[i].find_node("Escola").text = escolas[i]["nome"]
 
 
 
@@ -181,3 +229,36 @@ func _on_prof_pressed():
 func _on_Home_pressed():
 	self.paginas.append("Home")
 	pagina()
+
+## Quando o usuário clicka na escola em destaque
+func _on_Home_Escola_pressed():
+	self.paginas.append("School/" + str(destaque))
+	pagina()
+
+func _on_Any_escola(nm):
+	self.paginas.append("School/" + str(nm))
+	pagina()
+
+
+func _on_Escola1_pressed():
+	_on_Any_escola(0)
+
+
+func _on_Escola2_pressed():
+	_on_Any_escola(1)
+
+
+func _on_Escola3_pressed():
+	_on_Any_escola(2)
+
+
+func _on_Escola4_pressed():
+	_on_Any_escola(3)
+
+
+func _on_Escola5_pressed():
+	_on_Any_escola(4)
+
+
+func _on_Escola6_pressed():
+	_on_Any_escola(5)
