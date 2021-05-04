@@ -41,6 +41,8 @@ func _ready():
 	seccoes["Quarry"] = $Vitrine/Quarry
 	seccoes["School"] = $Vitrine/School
 	seccoes["Sing Up"] = $Vitrine/SingUp
+	seccoes["About"] = $Vitrine/About
+	seccoes["Map"] = $Vitrine/Map
 	print(seccoes["Home"])
 	
 	## O histórico de navegação é atualizado
@@ -267,4 +269,14 @@ func _on_Escola6_pressed():
 
 func _on_Cadastro_pressed():
 	self.paginas.append("Sing Up")
+	pagina()
+
+
+func _on_Mapa_pressed():
+	self.paginas.append("Map")
+	pagina()
+
+
+func _on_Sobre_pressed():
+	self.paginas.append("About")
 	pagina()
