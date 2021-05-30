@@ -1,0 +1,41 @@
+<header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <div class="logo">
+      <h1><a [routerLink]="''">Vitrine Escolar</a></h1>
+    </div>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" [routerLink]="''">Home</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="'quemSomos'">Quem somos</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="'mapa'">Mapa</a></li>
+        <li class="dropdown"><a href="#"><span>Níveis de ensino</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="#">Pré-alfabetização</a></li>
+            <li class="dropdown"><a href="#"><span>Escola fundamental</span> <i class="bi bi-chevron-right"></i></a>
+              <ul>
+                <li><a href="#">Escola fundamental I</a></li>
+                <li><a href="#">Escola fundamental II</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#"><span>Escola Médio</span> <i class="bi bi-chevron-right"></i></a>
+              <ul>
+                <li><a href="#">1º Ano</a></li>
+                <li><a href="#">2º Ano</a></li>
+                <li><a href="#">3º Ano</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a class="nav-link scrollto" [routerLink]="'trabalheConosco'">Trabalhe conosco</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="'faq'">F.A.Q</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="'contact'">Contato</a></li>          
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header>
+
+  

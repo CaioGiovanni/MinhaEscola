@@ -1,0 +1,12 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+button {
+    margin-top: 5px;
+    margin-right: 30px;
+    padding: 150px;
+    margin-bottom: 30px;
+}
+button:hover {
+    box-shadow:0 0 1em gold  ;
+    
+}
