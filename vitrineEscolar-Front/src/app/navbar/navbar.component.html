@@ -1,4 +1,4 @@
-<header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+<header id="header" class="fixed-top d-flex align-items-center ">
   <div class="container d-flex align-items-center justify-content-between">
 
     <div class="logo">
@@ -8,8 +8,8 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li><a class="nav-link scrollto active" [routerLink]="''">Home</a></li>
-        <li><a class="nav-link scrollto" [routerLink]="'quemSomos'">Quem somos</a></li>
-        <li><a class="nav-link scrollto" [routerLink]="'mapa'">Mapa</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="['/quemSomos']" routerLinkActive="active">Quem somos</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="['/price']">Mapa</a></li>
         <li class="dropdown"><a href="#"><span>Níveis de ensino</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="#">Pré-alfabetização</a></li>
