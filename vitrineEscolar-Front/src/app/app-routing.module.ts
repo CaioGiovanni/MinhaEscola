@@ -4,6 +4,7 @@ import { QuemSomosComponent } from './views/quemSomos/quemSomos.component';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { PriceComponent } from './views/price/price.component';
+import { FaqComponent } from './views/faq/faq.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path:'quemSomos',
     component: QuemSomosComponent
+
+  },
+  {
+    path:'faq',
+    component: FaqComponent
 
   },
 ];
