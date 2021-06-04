@@ -14,8 +14,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './views/login/login.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { PriceComponent } from './views/price/price.component';
 import { QuemSomosComponent } from './views/quemSomos/quemSomos.component';
+import { FaqComponent } from './views/faq/faq.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 import { BuscaComponent } from './views/busca/busca.component';
 import { FormcadastroComponent } from './formcadastro/formcadastro.component';
 
@@ -27,9 +30,12 @@ import {APP_BASE_HREF} from '@angular/common';
     HomeComponent,
     EscolasListComponent,
     LoginComponent,
+    PriceComponent,
     CadastroComponent,
     QuemSomosComponent,
     NavbarComponent,
+    FaqComponent,
+    FooterComponent,
     BuscaComponent,
     FormcadastroComponent
   ],
