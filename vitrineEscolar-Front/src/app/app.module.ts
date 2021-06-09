@@ -17,6 +17,7 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { PriceComponent } from './views/price/price.component';
 import { QuemSomosComponent } from './views/quemSomos/quemSomos.component';
 import { FaqComponent } from './views/faq/faq.component';
+import { PreAlfaComponent } from './views/niveisEscolas/preAlfa/preAlfa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { BuscaComponent } from './views/busca/busca.component';
@@ -33,6 +34,7 @@ import {APP_BASE_HREF} from '@angular/common';
     PriceComponent,
     CadastroComponent,
     QuemSomosComponent,
+    PreAlfaComponent,
     NavbarComponent,
     FaqComponent,
     FooterComponent,
