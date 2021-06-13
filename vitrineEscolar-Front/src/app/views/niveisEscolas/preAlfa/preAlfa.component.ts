@@ -18,7 +18,7 @@ export class PreAlfaComponent implements OnInit {
 
   refreshDepList() {
     this.service.getEscolaList().subscribe(data=>{
-      this.EscolaList=data.results;
+      this.EscolaList=data;
     });
   }
 
