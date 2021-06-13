@@ -18,156 +18,91 @@
     </div>
   </section><!-- End Breadcrumbs -->
 
-  <!-- ======= Portfolio Details Section ======= -->
-  <section id="portfolio-details" class="portfolio-details">
-    <div class="container">
+  <table>
+    <tbody>
+      <tr *ngFor="let dataItem of EscolaList">
+        <td>
+          <!-- ======= Portfolio Details Section ======= -->
+          <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
 
-      <div class="row gy-4 portfolio-info">
+              <div class="row gy-4 portfolio-info">
 
-        <div class="col-lg-8">
-          <div class="portfolio-details-slider swiper-container">
-            <div class="swiper-wrapper align-items-center">
+                <div class="col-lg-8">
+                  <div class="portfolio-details-slider swiper-container">
+                    <div class="swiper-wrapper align-items-center">
 
-              <div class="swiper-slide">
-                <img src="assets/img/EscolaSouzaVeras.png" alt="">
+                      <div class="swiper-slide">
+                        <img src="assets/img/EscolaSouzaVeras.png" alt="">
+                      </div>
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4" >
+                  <div class="portfolio-info">
+                    
+
+                    <h3>Escola Souza Veras</h3>
+                    <ul>
+                      <li><strong>Segurança</strong>: 5</li>
+                      <div class="rating"> 
+                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
+                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
+                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
+                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
+                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                      </div>
+                      <li><strong>Estrutura</strong>: 4,5</li>
+                      <div class="rating"> 
+                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
+                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
+                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
+                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
+                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                      </div>
+                      <li><strong>Merenda</strong>: 4,7</li>
+                      <div class="rating"> 
+                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
+                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
+                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
+                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
+                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                      </div>
+                      <li><strong>Metodologia</strong>: 4</li>
+                      <div class="rating"> 
+                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
+                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
+                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
+                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
+                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                      </div>
+                      <li><strong>Site oficial</strong>: <a href="http://www.souzaveras.com.br/">Escola Souza Veras</a></li>
+                    </ul>
+                  </div>
+                  
+                </div>
+                <div class="portfolio-description">
+                  <h2>Descrição</h2>
+                  <p>
+                    A cada ano a Escola Souza Veras renova com seus alunos o compromisso com a educação e a formação de cidadãos responsáveis.
+                Atualmente o mercado tem exigido novas habilidades e atributos. A lista inclui resolução de problemas, pensamento positivo, criatividade/ inovação, confiança, trabalho em equipe, aceitação e responsabilidade, comunicação, educação profissional entre outros. Estas habilidades e atributos são aspectos importantes da educação de uma criança e/ou adolescente como um todo e vai além das propostas acadêmicas.
+                
+                Em parceria com a família procuramos integrar nossos alunos ao mundo e tecnologia através de uma equipe pedagógica profissionalizada.
+                  </p>
+                </div>
+
               </div>
 
             </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-
-        <div class="col-lg-4" >
-          <div class="portfolio-info">
-            <h3>Escola Souza Veras</h3>
-            <ul>
-              <li><strong>Segurança</strong>: 5</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Estrutura</strong>: 4,5</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Merenda</strong>: 4,7</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Métodologia</strong>: 4</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-            </ul>
-          </div>
-          
-        </div>
-        <div class="portfolio-description">
-          <h2>Descrição</h2>
-          <p>
-            A cada ano a Escola Souza Veras renova com seus alunos o compromisso com a educação e a formação de cidadãos responsáveis.
-        Atualmente o mercado tem exigido novas habilidades e atributos. A lista inclui resolução de problemas, pensamento positivo, criatividade/ inovação, confiança, trabalho em equipe, aceitação e responsabilidade, comunicação, educação profissional entre outros. Estas habilidades e atributos são aspectos importantes da educação de uma criança e/ou adolescente como um todo e vai além das propostas acadêmicas.
-        
-        Em parceria com a família procuramos integrar nossos alunos ao mundo e tecnologia através de uma equipe pedagógica profissionalizada.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Details Section -->
-
-  <!-- ======= Portfolio Details Section ======= -->
-  <section id="portfolio-details" class="portfolio-details">
-    <div class="container">
-
-      <div class="row gy-4 portfolio-info">
-
-        <div class="col-lg-8">
-          <div class="portfolio-details-slider swiper-container">
-            <div class="swiper-wrapper align-items-center">
-
-              <div class="swiper-slide">
-                <img src="assets/img/EscolaSouzaVeras.png" alt="">
-              </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-
-        <div class="col-lg-4" >
-          <div class="portfolio-info">
-            <h3>Escola Souza Veras</h3>
-            <ul>
-              <li><strong>Segurança</strong>: 5</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Estrutura</strong>: 4,5</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Merenda</strong>: 4,7</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Métodologia</strong>: 4</li>
-              <div class="rating"> 
-                <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-              </div>
-              <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-            </ul>
-          </div>
-          
-        </div>
-        <div class="portfolio-description">
-          <h2>Descrição</h2>
-          <p>
-            A cada ano a Escola Souza Veras renova com seus alunos o compromisso com a educação e a formação de cidadãos responsáveis.
-        Atualmente o mercado tem exigido novas habilidades e atributos. A lista inclui resolução de problemas, pensamento positivo, criatividade/ inovação, confiança, trabalho em equipe, aceitação e responsabilidade, comunicação, educação profissional entre outros. Estas habilidades e atributos são aspectos importantes da educação de uma criança e/ou adolescente como um todo e vai além das propostas acadêmicas.
-        
-        Em parceria com a família procuramos integrar nossos alunos ao mundo e tecnologia através de uma equipe pedagógica profissionalizada.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Details Section -->
-
+          </section><!-- End Portfolio Details Section -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
 </main><!-- End #main -->
 
 <app-footer></app-footer>

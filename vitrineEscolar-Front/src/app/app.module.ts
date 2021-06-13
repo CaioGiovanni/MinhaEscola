@@ -22,8 +22,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { BuscaComponent } from './views/busca/busca.component';
 import { FormcadastroComponent } from './formcadastro/formcadastro.component';
+import {SharedService} from './shared.service';
 
 import {APP_BASE_HREF} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import {APP_BASE_HREF} from '@angular/common';
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule, 
+    HttpClientModule, 
+    ReactiveFormsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent]

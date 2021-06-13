@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService} from 'src/app/shared.service';
 
 @Component({
   selector: 'app-preAlfa',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreAlfaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:SharedService) { }
+
+  EscolaList:any=[];
 
   ngOnInit(): void {
+    this.refreshDepList();
+  }
+
+  refreshDepList() {
+    this.service.getEscolaList().subscribe(data=>{
+      this.EscolaList=data.results;
+    });
   }
 
 }
