@@ -33,7 +33,7 @@
                     <div class="swiper-wrapper align-items-center">
 
                       <div class="swiper-slide">
-                        <img src="assets/img/EscolaSouzaVeras.png" alt="">
+                        <img src={{selectedSchool.foto}} alt="">
                       </div>
 
                     </div>
@@ -79,7 +79,7 @@
                         <input type="radio" name="rating4" value="2" id="19"><label for="19">☆</label> 
                         <input type="radio" name="rating4" value="1" id="20"><label for="20">☆</label>
                       </div>
-                      <li><strong>Site oficial</strong>: <a href="http://www.souzaveras.com.br/">Escola Souza Veras</a></li>
+                      <li><strong>Site oficial</strong>: <a href={{selectedSchool.site}}>{{selectedSchool.nome}}</a></li>
                     </ul>
                   </div>
                   
@@ -87,10 +87,7 @@
                 <div class="portfolio-description">
                   <h2>Descrição</h2>
                   <p>
-                    A cada ano a Escola Souza Veras renova com seus alunos o compromisso com a educação e a formação de cidadãos responsáveis.
-                Atualmente o mercado tem exigido novas habilidades e atributos. A lista inclui resolução de problemas, pensamento positivo, criatividade/ inovação, confiança, trabalho em equipe, aceitação e responsabilidade, comunicação, educação profissional entre outros. Estas habilidades e atributos são aspectos importantes da educação de uma criança e/ou adolescente como um todo e vai além das propostas acadêmicas.
-                
-                Em parceria com a família procuramos integrar nossos alunos ao mundo e tecnologia através de uma equipe pedagógica profissionalizada.
+                    {{selectedSchool.descricao}}
                   </p>
                 </div>
 

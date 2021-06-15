@@ -32,7 +32,7 @@
             <tbody>
               <tr *ngFor="let dataItem of EscolaList?.results">
                 <td class="w-25">
-                    <img src="assets/img/EscolaSouzaVeras.png" class="img-fluid img-thumbnail" alt="">
+                    <img src={{dataItem.foto}} class="img-fluid img-thumbnail" alt="">
                 </td>
                 <td>{{dataItem.nome}}</td>
                 <td>{{dataItem.cep}}</td>
