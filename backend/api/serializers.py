@@ -27,3 +27,6 @@ class UserSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = User
     fields = ['username', 'first_name', 'last_name', 'email', 'date_joined']
+
+def EscolaSerializadorTemporario(instancia):
+  return {'nome':instancia.nome}

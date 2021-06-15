@@ -13,6 +13,12 @@ class Escola(models.Model):
   alimentacaoEscolar = models.FloatField(default=0)
   cep = models.CharField(max_length=8)
   telefone = models.CharField(max_length=10)
+  descricao = models.CharField(max_length=4096, default = 'texto')
+  site = models.CharField(max_length=2048, default = 'http')
+  foto = models.CharField(max_length=2048, default = 'http')
+  preAlfa = models.BooleanField(default=True)
+  ensinoFundamental = models.BooleanField(default=True)
+  ensinoMedio = models.BooleanField(default=True)
 
 class Usuario(models.Model):
   usuario = models.OneToOneField(User, related_name='usuário', on_delete=models.CASCADE)
