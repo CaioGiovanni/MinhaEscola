@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { observable, Observable } from 'rxjs';
 import { SharedService} from 'src/app/shared.service';
-import { EscolasListComponent } from '../../escolas-list/escolas-list.component';
 
 @Component({
   selector: 'app-medio3',

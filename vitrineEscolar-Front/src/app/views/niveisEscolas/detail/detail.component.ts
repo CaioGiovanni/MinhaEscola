@@ -19,6 +19,5 @@ export class DetailComponent implements OnInit {
 
   refreshDepList() {
     this.selectedSchool = this.service.selectedSchool;
-    console.log(this.selectedSchool);
   }
 }
