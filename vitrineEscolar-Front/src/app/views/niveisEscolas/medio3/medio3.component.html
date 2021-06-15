@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>Ensino médio (3º Ano)</h1>
+        <ol>
+          <li><a [routerLink]="''">Home</a></li>
+          <li>Níveis de ensino</li>
+          <li>Ensino médio (3º Ano)</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+    <div class="container">
+    <div class="row">
+      <div class="col-12">
+          <table class="table table-image">
+            <thead>
+                <tr>
+                  <th scope="col">Logo</th>
+                  <th scope="col">Escola</th>
+                  <th scope="col">CEP</th>
+                  <th scope="col">Telefone</th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr *ngFor="let dataItem of EscolaList?.results">
+                <td class="w-25">
+                    <img src="assets/img/EscolaSouzaVeras.png" class="img-fluid img-thumbnail" alt="">
+                </td>
+                <td>{{dataItem.nome}}</td>
+                <td>{{dataItem.cep}}</td>
+                <td>{{dataItem.telefone}}</td>
+                <td><button (click)="detail(dataItem)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</button></td>
+              </tr>
+            </tbody>
+          </table>   
+      </div>
+    </div>
+  </div>
+
+</main><!-- End #main -->
+<app-footer></app-footer>

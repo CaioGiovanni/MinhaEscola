@@ -2,24 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService} from 'src/app/shared.service';
 
 @Component({
-  selector: 'app-preAlfa',
-  templateUrl: './preAlfa.component.html',
-  styleUrls: ['./preAlfa.component.css']
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.css']
 })
-export class PreAlfaComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
   constructor(private service:SharedService) { }
 
   EscolaList:any=[];
+  selectedSchool:any;
 
   ngOnInit(): void {
     this.refreshDepList();
   }
 
   refreshDepList() {
-    this.service.getEscolaList().subscribe(data=>{
-      this.EscolaList=data;
-    });
+    this.selectedSchool = this.service.selectedSchool;
+    console.log(this.selectedSchool);
   }
-
 }

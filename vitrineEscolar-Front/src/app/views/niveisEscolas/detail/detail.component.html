@@ -20,7 +20,7 @@
 
   <table class="container portfolio-info">
     <tbody>
-      <tr *ngFor="let dataItem of EscolaList?.results">
+      <tr *ngIf="selectedSchool">
         <td>
           <!-- ======= Portfolio Details Section ======= -->
           <section id="portfolio-details" class="portfolio-details">
@@ -45,39 +45,39 @@
                   <div class="portfolio-info">
                     
 
-                    <h3>{{dataItem.nome}}</h3>
+                    <h3>{{selectedSchool.nome}}</h3>
                     <ul>
-                      <li><strong>Segurança</strong>: {{dataItem.segurancaEscolar}}</li>
+                      <li><strong>Segurança</strong>: {{selectedSchool.segurancaEscolar}}</li>
                       <div class="rating"> 
-                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                        <input type="radio" name="rating" value="5" id="1"><label for="1">☆</label> 
+                        <input type="radio" name="rating" value="4" id="2"><label for="2">☆</label> 
+                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
+                        <input type="radio" name="rating" value="2" id="4"><label for="4">☆</label> 
+                        <input type="radio" name="rating" value="1" id="5"><label for="5">☆</label>
                       </div>
-                      <li><strong>Estrutura</strong>: {{dataItem.estruturaEscolar}}</li>
+                      <li><strong>Estrutura</strong>: {{selectedSchool.estruturaEscolar}}</li>
                       <div class="rating"> 
-                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                        <input type="radio" name="rating2" value="5" id="6"><label for="6">☆</label> 
+                        <input type="radio" name="rating2" value="4" id="7"><label for="7">☆</label> 
+                        <input type="radio" name="rating2" value="3" id="8"><label for="8">☆</label> 
+                        <input type="radio" name="rating2" value="2" id="9"><label for="9">☆</label> 
+                        <input type="radio" name="rating2" value="1" id="10"><label for="10">☆</label>
                       </div>
-                      <li><strong>Merenda</strong>: 4,7</li>
+                      <li><strong>Merenda</strong>: {{selectedSchool.alimentacaoEscolar}}</li>
                       <div class="rating"> 
-                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                        <input type="radio" name="rating3" value="5" id="11"><label for="11">☆</label> 
+                        <input type="radio" name="rating3" value="4" id="12"><label for="12">☆</label> 
+                        <input type="radio" name="rating3" value="3" id="13"><label for="13">☆</label> 
+                        <input type="radio" name="rating3" value="2" id="14"><label for="14">☆</label> 
+                        <input type="radio" name="rating3" value="1" id="15"><label for="15">☆</label>
                       </div>
-                      <li><strong>Metodologia</strong>: 4</li>
+                      <li><strong>Metodologia</strong>: {{selectedSchool.qualidadeEscolar}}</li>
                       <div class="rating"> 
-                        <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
-                        <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
-                        <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
-                        <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
-                        <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
+                        <input type="radio" name="rating4" value="5" id="16"><label for="16">☆</label> 
+                        <input type="radio" name="rating4" value="4" id="17"><label for="17">☆</label> 
+                        <input type="radio" name="rating4" value="3" id="18"><label for="18">☆</label> 
+                        <input type="radio" name="rating4" value="2" id="19"><label for="19">☆</label> 
+                        <input type="radio" name="rating4" value="1" id="20"><label for="20">☆</label>
                       </div>
                       <li><strong>Site oficial</strong>: <a href="http://www.souzaveras.com.br/">Escola Souza Veras</a></li>
                     </ul>

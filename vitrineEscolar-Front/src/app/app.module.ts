@@ -17,7 +17,7 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { PriceComponent } from './views/price/price.component';
 import { QuemSomosComponent } from './views/quemSomos/quemSomos.component';
 import { FaqComponent } from './views/faq/faq.component';
-import { PreAlfaComponent } from './views/niveisEscolas/preAlfa/preAlfa.component';
+import { DetailComponent } from './views/niveisEscolas/detail/detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { BuscaComponent } from './views/busca/busca.component';
@@ -27,6 +27,7 @@ import {SharedService} from './shared.service';
 import {APP_BASE_HREF} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EnsinoMedio3Component } from './views/niveisEscolas/medio3/medio3.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +38,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     PriceComponent,
     CadastroComponent,
     QuemSomosComponent,
-    PreAlfaComponent,
+    DetailComponent,
     NavbarComponent,
     FaqComponent,
     FooterComponent,
     BuscaComponent,
-    FormcadastroComponent
+    FormcadastroComponent,
+    EnsinoMedio3Component
   ],
   imports: [
     BrowserModule,
