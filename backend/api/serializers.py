@@ -11,7 +11,7 @@ class HoraSerializador(serializers.HyperlinkedModelSerializer):
 class EscolaSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Escola
-    fields = ['nome', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'cep', 'telefone']
+    fields = ['nome', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'cep', 'telefone', 'descricao', 'site', 'foto', 'preAlfa', 'ensinoFundamental', 'ensinoMedio']
 
 class UsuarioSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
