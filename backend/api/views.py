@@ -12,6 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication, JWTTokenUserAuthentication
 from rest_framework_simplejwt.backends import TokenBackend
+# from .funcoesAuxiliares import vish
 
 # Create your views here.
 
@@ -80,12 +81,14 @@ def perfilUsuario(request):
 def usuarioToken(request):
   headers = request.headers
   # print(headers)
-  token = headers['Authorization']#.split(' ')[1]
+  # token = headers['Authorization'].split(' ')[1]
   autenticacao = JWTAuthentication()
-  autenticacao = JWTTokenUserAuthentication()
+  # autenticacao = JWTTokenUserAuthentication()
   # token = str(token)
   # print(type(token))
   # print(token[0:10])
-  autenticacao.get_user(token)
+  # autenticacao.get_user(token)
+  usuario, token = autenticacao.authenticate(request)
   # user = JWTTokenUserAuthentication.get_user(token)
+  # vish()
   return Response({'mensagem': 'vish'})
