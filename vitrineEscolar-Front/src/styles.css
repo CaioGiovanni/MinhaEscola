@@ -334,8 +334,10 @@ body {
     flex-direction: column;
     text-align: center;
     position: relative;
-    height: 70vh;
+    height: 100%;
     padding-top: 60px;
+    margin-top: 5%;
+    margin-bottom: 3%;
   }
   
   #hero h2 {
