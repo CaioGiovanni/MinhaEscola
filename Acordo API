@@ -5,7 +5,6 @@ vitrineescolar.com.br/api/
 vitrineescolar.com.br/api/usuario
 vitrineescolar.com.br/api/escolas
 vitrineescolar.com.br/api/avaliacoes
-vitrineescolar.com.br/api/admin
 vitrineescolar.com.br/api/token
 
 
@@ -84,9 +83,6 @@ Update = headers {Authorization} body {Avaliação} retorna {mensagem} **
 POST
 /excluir
 Delete = headers {Authorization} body {Avaliação} retorna {mensagem} *
-
-
-### Administração
 
 
 
