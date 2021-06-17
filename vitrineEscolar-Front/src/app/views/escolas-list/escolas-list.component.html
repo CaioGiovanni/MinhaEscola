@@ -2,14 +2,10 @@
   <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
 
     <!-- Slide 1 -->
-    <div class="carousel-item active">
+    <div class="carousel-item active" *ngIf="EscolaActiveCarrousel">
       <div class="carousel-container">
-        <h2 class="animate__animated animate__fadeInDown">Colégio e Curso <span>Desafio</span></h2>
-        <p class="animate__animated animate__fadeInUp">Se você chegou até aqui é porque acredita numa educação criativa,
-          humana e autônoma para o seu filho.
-          No Colégio e Curso Desafio o ensinar e o aprender não param, se transformam.
-          Agora a família Desafio está de casa nova, esperando você para recomeçar.
-          Vamos juntos?</p>
+        <h2 class="animate__animated animate__fadeInDown">{{EscolaActiveCarrousel.nome}}</h2>
+        <p class="animate__animated animate__fadeInUp">{{EscolaActiveCarrousel.descricao}}</p>
         <div class="rating animate__animated animate__fadeInUp"> 
           <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
           <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
@@ -17,15 +13,15 @@
           <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
           <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
         </div>
-        <a [routerLink]="['/preAlfabetizacao']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
+        <a (click)="detail(EscolaActiveCarrousel)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
       </div>
     </div>
 
     <!-- Slide 2 -->
-    <div class="carousel-item">
+    <div class="carousel-item" *ngFor="let escola of EscolaList?.results.slice(1)">
       <div class="carousel-container">
-        <h2 class="animate__animated animate__fadeInDown">Colégio UFPE</h2>
-        <p class="animate__animated animate__fadeInUp">O Colégio de Aplicação da Universidade Federal de Pernambuco foi fundado em 10 de março de 1958. Hoje atende aos acadêmicos das diversas licenciaturas, em suas habilitações, atuando na educação básica e na formação continuada de professores. Também desenvolve atividades de pesquisa e extensão.</p>
+        <h2 class="animate__animated animate__fadeInDown">{{escola.nome}}</h2>
+        <p class="animate__animated animate__fadeInUp">{{escola.descricao}}</p>
         <div class="rating animate__animated animate__fadeInUp"> 
           <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
           <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
@@ -33,26 +29,7 @@
           <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
           <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
         </div>
-        <a [routerLink]="['/preAlfabetizacao']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
-      </div>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="carousel-item">
-      <div class="carousel-container">
-        <h2 class="animate__animated animate__fadeInDown">Escola Souza Veras</h2>
-        <p class="animate__animated animate__fadeInUp">A cada ano a Escola Souza Veras renova com seus alunos o compromisso com a educação e a formação de cidadãos responsáveis.
-          Atualmente o mercado tem exigido novas habilidades e atributos. A lista inclui resolução de problemas, pensamento positivo, criatividade/ inovação, confiança, trabalho em equipe, aceitação e responsabilidade, comunicação, educação profissional entre outros. Estas habilidades e atributos são aspectos importantes da educação de uma criança e/ou adolescente como um todo e vai além das propostas acadêmicas.
-          
-          Em parceria com a família procuramos integrar nossos alunos ao mundo e tecnologia através de uma equipe pedagógica profissionalizada.</p>
-        <div class="rating animate__animated animate__fadeInUp"> 
-          <input type="radio" name="rating" value="5" id="15"><label for="15">☆</label> 
-          <input type="radio" name="rating" value="4" id="14"><label for="14">☆</label> 
-          <input type="radio" name="rating" value="3" id="13"><label for="13">☆</label> 
-          <input type="radio" name="rating" value="2" id="12"><label for="12">☆</label> 
-          <input type="radio" name="rating" value="1" id="11"><label for="11">☆</label>
-        </div>
-        <a [routerLink]="['/preAlfabetizacao']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
+        <a (click)="detail(escola)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
       </div>
     </div>
 

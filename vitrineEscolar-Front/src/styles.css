@@ -334,8 +334,10 @@ body {
     flex-direction: column;
     text-align: center;
     position: relative;
-    height: 70vh;
+    height: 100%;
     padding-top: 60px;
+    margin-top: 5%;
+    margin-bottom: 3%;
   }
   
   #hero h2 {
@@ -1506,4 +1508,11 @@ body {
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }

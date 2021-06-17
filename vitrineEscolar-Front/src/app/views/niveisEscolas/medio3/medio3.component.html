@@ -30,14 +30,14 @@
                 </tr>
               </thead>
             <tbody>
-              <tr *ngFor="let dataItem of EscolaList?.results">
+              <tr *ngFor="let escola of EscolaList?.results">
                 <td class="w-25">
-                    <img src="assets/img/EscolaSouzaVeras.png" class="img-fluid img-thumbnail" alt="">
+                    <img src={{escola.foto}} class="img-fluid img-thumbnail" alt="">
                 </td>
-                <td>{{dataItem.nome}}</td>
-                <td>{{dataItem.cep}}</td>
-                <td>{{dataItem.telefone}}</td>
-                <td><button (click)="detail(dataItem)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</button></td>
+                <td>{{escola.nome}}</td>
+                <td>{{escola.cep}}</td>
+                <td>{{escola.telefone}}</td>
+                <td><button (click)="detail(escola)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</button></td>
               </tr>
             </tbody>
           </table>   
