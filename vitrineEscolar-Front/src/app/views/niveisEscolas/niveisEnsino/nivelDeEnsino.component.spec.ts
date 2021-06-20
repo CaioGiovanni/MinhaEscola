@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Medio3Component } from './medio3.component';
+import { NivelDeEnsinoComponent } from './nivelDeEnsino.component';
 
-describe('Medio3Component', () => {
-  let component: Medio3Component;
-  let fixture: ComponentFixture<Medio3Component>;
+describe('NivelDeEnsinoComponent', () => {
+  let component: NivelDeEnsinoComponent;
+  let fixture: ComponentFixture<NivelDeEnsinoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Medio3Component ]
+      declarations: [ NivelDeEnsinoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Medio3Component);
+    fixture = TestBed.createComponent(NivelDeEnsinoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

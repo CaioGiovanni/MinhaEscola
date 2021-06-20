@@ -27,7 +27,7 @@ import {SharedService} from './shared.service';
 import {APP_BASE_HREF} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { EnsinoMedio3Component } from './views/niveisEscolas/medio3/medio3.component';
+import { NivelDeEnsinoComponent } from './views/niveisEscolas/niveisEnsino/nivelDeEnsino.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { EnsinoMedio3Component } from './views/niveisEscolas/medio3/medio3.compo
     FooterComponent,
     BuscaComponent,
     FormcadastroComponent,
-    EnsinoMedio3Component
+    NivelDeEnsinoComponent
   ],
   imports: [
     BrowserModule,

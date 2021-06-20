@@ -6,7 +6,7 @@ import { HomeComponent } from './views/home/home.component';
 import { PriceComponent } from './views/price/price.component';
 import { FaqComponent } from './views/faq/faq.component';
 import { DetailComponent } from './views/niveisEscolas/detail/detail.component';
-import { EnsinoMedio3Component } from './views/niveisEscolas/medio3/medio3.component';
+import { NivelDeEnsinoComponent } from './views/niveisEscolas/niveisEnsino/nivelDeEnsino.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -48,14 +48,21 @@ const routes: Routes = [
 
   },
   {
-    path:'EnsinoMedio3',
-    component: EnsinoMedio3Component
+    path:'NivelDeEnsino/:nivel',
+    component: NivelDeEnsinoComponent
+
+  },
+  {
+    path:'NivelDeEnsino',
+    component: NivelDeEnsinoComponent
 
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

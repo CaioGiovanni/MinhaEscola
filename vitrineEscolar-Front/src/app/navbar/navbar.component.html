@@ -10,10 +10,12 @@
         <li><a class="nav-link scrollto" [routerLink]="''" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
         <li><a class="nav-link scrollto" [routerLink]="['/quemSomos']" routerLinkActive="active">Quem somos</a></li>
         <li><a class="nav-link scrollto" [routerLink]="['/price']"routerLinkActive="active">Planos</a></li>
-        <li class="dropdown"><a href="#"><span>Níveis de ensino</span> <i class="bi bi-chevron-down"></i></a>
+        <li class="dropdown"><a [routerLink]="['/NivelDeEnsino']" routerLinkActive="active"><span>Níveis de ensino</span> <i class="bi bi-chevron-down"></i></a> 
           <ul>
-            <li><a [routerLink]="['/preAlfabetizacao']" routerLinkActive="active">Pré-alfabetização</a></li>
-            <li class="dropdown"><a href="#"><span>Escola fundamental</span> <i class="bi bi-chevron-right"></i></a>
+            <li><a [routerLink]="['/NivelDeEnsino/Pré-alfabetização']" routerLinkActive="active">Pré-alfabetização</a></li>
+            <li><a [routerLink]="['/NivelDeEnsino/EnsinoFundamental']" routerLinkActive="active">Ensino Fundamental</a></li>
+            <li><a [routerLink]="['/NivelDeEnsino/EnsinoMédio']" routerLinkActive="active">Ensino Médio</a></li>
+            <!-- <li class="dropdown"><a href="#"><span>Escola fundamental</span> <i class="bi bi-chevron-right"></i></a>
               <ul>
                 <li><a href="#">Escola fundamental I</a></li>
                 <li><a href="#">Escola fundamental II</a></li>
@@ -25,12 +27,12 @@
                 <li><a href="#">2º Ano</a></li>
                 <li><a [routerLink]="['/EnsinoMedio3']" routerLinkActive="active">3º Ano</a></li>
               </ul>
-            </li>
+            </li>-->
           </ul>
         </li>
         <li><a class="nav-link scrollto" [routerLink]="'trabalheConosco'">Trabalhe conosco</a></li>
         <li><a class="nav-link scrollto" [routerLink]="['/faq']" routerLinkActive="active">F.A.Q</a></li>
-        <li><a class="nav-link scrollto" [routerLink]="'contact'">Contato</a></li>          
+        <li><a class="nav-link scrollto" [routerLink]="'contact'">Contato</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
