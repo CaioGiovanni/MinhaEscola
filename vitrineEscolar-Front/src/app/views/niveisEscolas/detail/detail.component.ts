@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService} from 'src/app/shared.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -8,16 +9,25 @@ import { SharedService} from 'src/app/shared.service';
 })
 export class DetailComponent implements OnInit {
 
-  constructor(private service:SharedService) { }
-
   EscolaList:any=[];
   selectedSchool:any;
+
+  constructor(private service:SharedService, private route: ActivatedRoute) { 
+    this.route.params.subscribe(params => this.selectedSchool = params['id']);
+  }
 
   ngOnInit(): void {
     this.refreshDepList();
   }
 
   refreshDepList() {
-    this.selectedSchool = this.service.selectedSchool;
+    this.service.getEscolaList().subscribe(data=>{
+      this.EscolaList=data;
+      this.selectedSchool = this.getSchool(this.selectedSchool);
+    });
+  }
+
+  getSchool(cep: any) {
+    return this.EscolaList?.results.find((escola: any) => escola.cep === cep);
   }
 }

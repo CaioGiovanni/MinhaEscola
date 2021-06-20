@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { observable, Observable } from 'rxjs';
 import { SharedService} from 'src/app/shared.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-medio3',
@@ -9,7 +10,7 @@ import { SharedService} from 'src/app/shared.service';
 })
 export class EnsinoMedio3Component implements OnInit {
 
-  constructor(private service:SharedService) { }
+  constructor(private service:SharedService, private route: ActivatedRoute, private router:Router) { }
 
   EscolaList:any=[];
 
@@ -24,6 +25,7 @@ export class EnsinoMedio3Component implements OnInit {
   }
 
   detail(dataItem: any): void {
+    this.router.navigate(['detail', dataItem.cep])
     this.service.selectedSchool = dataItem;
   }
 }
