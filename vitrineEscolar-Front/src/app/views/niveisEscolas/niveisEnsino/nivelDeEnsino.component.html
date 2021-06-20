@@ -6,11 +6,16 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h1>Ensino médio (3º Ano)</h1>
+        <h1 *ngIf="nivelDeEnsino === 'Pré-alfabetização'">Pré-alfabetização</h1>
+        <h1 *ngIf="nivelDeEnsino === 'EnsinoFundamental'">Ensino Fundamental</h1>
+        <h1 *ngIf="nivelDeEnsino === 'EnsinoMédio'">Ensino Médio</h1>
+        <h1 *ngIf="nivelDeEnsino === undefined">Todos os níveis de ensino</h1>
         <ol>
           <li><a [routerLink]="''">Home</a></li>
           <li>Níveis de ensino</li>
-          <li>Ensino médio (3º Ano)</li>
+          <li *ngIf="nivelDeEnsino === 'Pré-alfabetização'">Pré-alfabetização</li>
+          <li *ngIf="nivelDeEnsino === 'EnsinoFundamental'">Ensino Fundamental</li>
+          <li *ngIf="nivelDeEnsino === 'EnsinoMédio'">Ensino Médio</li>
         </ol>
       </div>
 
