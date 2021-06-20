@@ -49,6 +49,10 @@ GET
 /ler
 Read          = {filtros} retorna {Escolas} ***
 
+GET
+/avaliacoes
+Read          = {Escola} retorna {Avaliacoes} ***
+
 POST
 /atualizar
 Update        = headers {Authorization} retorna {mensagem} *
