@@ -13,6 +13,11 @@ class EscolaSerializador(serializers.HyperlinkedModelSerializer):
     model = Escola
     fields = ['nome', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'cep', 'telefone', 'descricao', 'site', 'foto', 'preAlfa', 'ensinoFundamental', 'ensinoMedio']
 
+# class EscolaSerializadorUnitario(serializers.Serializer):
+#   class Meta:
+#     model = Escola
+#     fields = ['nome', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'cep', 'telefone', 'descricao', 'site', 'foto', 'preAlfa', 'ensinoFundamental', 'ensinoMedio']
+
 class UsuarioSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Usuario

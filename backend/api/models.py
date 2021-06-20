@@ -21,8 +21,8 @@ class Escola(models.Model):
   ensinoMedio = models.BooleanField(default=True)
 
 class Usuario(models.Model):
-  usuario = models.OneToOneField(User, related_name='usuário', on_delete=models.CASCADE)
-  dataNascimento = models.DateField(default=timezone.now())
+  usuario = models.OneToOneField(User, related_name='usuário', on_delete=models.CASCADE, blank=False)
+  dataNascimento = models.DateField(default=timezone.now(), blank=False)
   dataCadastro = models.DateField(default=timezone.now())
   escolaAtual = models.ForeignKey(Escola, on_delete=models.CASCADE)
   cep = models.CharField(max_length=8)
