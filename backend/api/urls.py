@@ -17,9 +17,29 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('escolaview/<int:pk>/', views.escolaView),
-    path('novousuario/', views.novoUsuario),
-    path('usuario/', views.perfilUsuario),
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
-    path('usuariotoken/', views.usuarioToken)
+
+    ## Usuarios
+    path('usuariotoken/', views.usuarioToken),
+    path('usuario/', views.perfilUsuario),
+    path('usuario/ler/', views.perfilUsuario),
+    path('usuario/criar/', views.novoUsuario),
+    path('usuario/atualizar/', views.atualizarUsuario),
+    path('usuario/excluir/', views.excluirUsuario),
+    path('usuario/recuperar/', views.recuperarUsuario),
+
+    ## Avaliacao
+    path('escola/criar/', views.criarEscola),
+    path('escola/ler/', views.recuperarEscola),
+    path('escola/atualizar/', views.atualizarEscola),
+    path('escola/excluir/', views.excluirEscola),
+    path('escola/importar/', views.importarEscolas),
+    path('escola/calcular/', views.calcularNotaDasEscolas),
+
+    ## Avaliacao
+    path('avaliacoes/criar/', views.publicarAvaliacao),
+    path('avaliacoes/ler/', views.recuperarAvaliacao),
+    path('avaliacoes/atualizar/', views.atualizarAvaliacao),
+    path('avaliacoes/excluir/', views.excluirAvaliacao),
 ]
