@@ -1,9 +1,11 @@
 from django.core.exceptions import ViewDoesNotExist
 from django.db.models import query
-from django.http.response import JsonResponse
+from django.http.response import HttpResponse, JsonResponse
+from django.template.response import *
 from django.shortcuts import render
 from rest_framework import serializers, viewsets
 from rest_framework import permissions
+from rest_framework.views import exception_handler
 from .models import Hora, Escola, Usuario, Avaliacao
 from .serializers import EscolaSerializadorTemporario, HoraSerializador, EscolaSerializador, UsuarioSerializador, AvaliacaoSerializador, UserSerializador
 from django.utils import timezone
@@ -12,6 +14,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication, JWTTokenUserAuthentication
 from rest_framework_simplejwt.backends import TokenBackend
+from .forms import *
 # from .funcoesAuxiliares import vish
 
 # Create your views here.
@@ -67,53 +70,116 @@ def escolaView(request, pk = 1):
 
 
 ### Funcoes do usuário
-## TODO
+## TODO cadastrar o usuario
 ##/usuario/criar
 @api_view(['GET','POST'])
 def novoUsuario(request):
   try:
     if request.method == 'GET':
-      pass
+      formulario = UsuarioFormulario()
+      return Response(formulario.clean_json())
     elif request.method == 'POST':
-      pass
-  except:
-    return Response({'mensagem': 'Vish. Houve um erro'})
+      formulario = UsuarioFormulario(request.data)
+      if (formulario.is_valid()):
+        if (formulario.is_avaliable()):
+          return Response({'mensagem': 'O usuario agora está cadastrado.'})
+        else:
+          return Response({'mensagem': 'Email ou usuário já cadastrado.'})
+      else:
+        return Response({'mensagem': 'Não foi possível fazer o cadastro.'})
+  except Exception as erro:
+    print(erro)
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
 
-## TODO
+## TODO retornar o perfil
 ##/usuario/
 ##/usuario/ler
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def perfilUsuario(request):
-  if (request.user.is_authenticated):
-    user = request.user
-    # usuario = user.body
-    usuario = Usuario.objects.get(usuario = user)
-    dicionarioEscola = {'nome': usuario.escolaAtual.nome, 'telefone': usuario.escolaAtual.telefone}
-    dicionarioUsuario = {'nascimento': usuario.dataNascimento, 'cep': usuario.cep, 'telefone': usuario.telefone, 'escola':dicionarioEscola}
-    return Response({'usuario':user.username, 'email':user.email, 'nome': user.first_name, 'sobrenome': user.last_name, 'usuario': dicionarioUsuario, 'erro':False})
-  else:
-    return Response({'mensagem':'Você não está conectado', 'erro':True})
+  try:
+    if (request.user.is_authenticated):
+      return Response ({'mensagem': 'Usuario autenticado.'})
+    elif ('Authorization' in request.headers):
+      try:
+        return Response ({'mensagem': 'Usuario autenticado.'})
+      except:
+        return Response ({'mensagem': 'Vish 001: Usuário invalido.'})
+    else:
+      return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
+  except Exception as erro:
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
+  # if (request.user.is_authenticated):
+  #   user = request.user
+  #   # usuario = user.body
+  #   usuario = Usuario.objects.get(usuario = user)
+  #   dicionarioEscola = {'nome': usuario.escolaAtual.nome, 'telefone': usuario.escolaAtual.telefone}
+  #   dicionarioUsuario = {'nascimento': usuario.dataNascimento, 'cep': usuario.cep, 'telefone': usuario.telefone, 'escola':dicionarioEscola}
+  #   return Response({'usuario':user.username, 'email':user.email, 'nome': user.first_name, 'sobrenome': user.last_name, 'usuario': dicionarioUsuario, 'erro':False})
+  # else:
+  #   return Response({'mensagem':'Você não está conectado', 'erro':True})
 
 
-## TODO
+## TODO Atualizar o perfil
 ##/usuario/atualizar
 @api_view(['GET','POST'])
 def atualizarUsuario(request):
-  pass
+  try:
+    if (request.method == 'POST'):
+      if (request.user.is_authenticated):
+        return Response ({'mensagem': 'Usuario autenticado.'})
+      elif ('Authorization' in request.headers):
+        try:
+          return Response ({'mensagem': 'Usuario autenticado.'})
+        except:
+          return Response ({'mensagem': 'Vish 001: Usuário invalido.'})
+      else:
+        return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
+    else:
+      formulario = UsuarioFormulario()
+      return Response(formulario.clean_json())
+  except Exception as erro:
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
 
-## TODO
+## TODO marcar o perfil como inativo
 ##/usuario/excluir
 @api_view(['GET','POST'])
 def excluirUsuario(request):
-  pass
+  try:
+    if (request.user.is_authenticated):
+      return Response ({'mensagem': 'Perfil excluído.'})
+    elif ('Authorization' in request.headers):
+      try:
+        return Response ({'mensagem': 'Perfil excluído.'})
+      except:
+        return Response ({'mensagem': 'Vish 001: Usuário invalido.'})
+    else:
+      return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
+  except Exception as erro:
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
 
-## TODO
+## TODO recuperar usuário para o admin
 ##/usuario/recuperar
 @api_view(['GET','POST'])
 def recuperarUsuario(request):
-  pass
+  try:
+    if (request.user.is_authenticated):
+      if (request.user.is_superuser):
+        return Response ({'mensagem': 'Usuario autenticado.'})
+      else:
+        return Response ({'mensagem': 'Usuario não tem permissão.'})
+    elif ('Authorization' in request.headers):
+      autenticacao = JWTAuthentication()
+      usuario, token = autenticacao.authenticate(request)
+      if (usuario.is_superuser):
+        return Response ({'mensagem': 'Usuario autenticado.'})
+      else:
+        return Response ({'mensagem': 'Usuario não tem permissão.'})
+    else:
+      return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
+  except Exception as erro:
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
 
-## TODO
+
 ## Não serve para nada.
 @api_view(['POST'])
 def usuarioToken(request):
@@ -132,12 +198,15 @@ def usuarioToken(request):
     # vish()
     return Response({'mensagem': 'você está logado'})
   except:
-    return Response({'mensagem': 'usuario inválido'})
+    return Response({'mensagem': 'token invalido'})
 
 ##não serve para nada
 @api_view(['GET', 'POST'])
 def loginUsuario(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 
 ### Escola
@@ -147,7 +216,14 @@ def loginUsuario(request):
 ## TODO
 @api_view(['GET','POST'])
 def criarEscola(request):
-  pass
+  try:
+    if (request.method == 'POST'):
+      pass
+    elif (request.method == 'GET'):
+      formulario = EscolaFormulario()
+      return Response(formulario.clean_json())
+  except:
+    pass
 
 # GET
 # /escola/ler/pkid
@@ -155,7 +231,10 @@ def criarEscola(request):
 ## TODO
 @api_view(['GET'])
 def recuperarEscola(request, idEscola, idAvaliacao):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # GET
 # /escola/avaliacoes/pkid
@@ -163,7 +242,10 @@ def recuperarEscola(request, idEscola, idAvaliacao):
 ## TODO
 @api_view(['GET'])
 def recuperarAvaliacoesDaEscola(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 
 # POST
@@ -172,7 +254,10 @@ def recuperarAvaliacoesDaEscola(request):
 ## TODO
 @api_view(['GET','POST'])
 def atualizarEscola(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # POST
 # /escola/excluir
@@ -180,7 +265,10 @@ def atualizarEscola(request):
 ## TODO
 @api_view(['GET','POST'])
 def excluirEscola(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # POST
 # /escola/importar
@@ -188,7 +276,10 @@ def excluirEscola(request):
 ## TODO
 @api_view(['GET','POST'])
 def importarEscolas(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # POST
 # /escola/calcular
@@ -196,7 +287,10 @@ def importarEscolas(request):
 ## TODO
 @api_view(['GET','POST'])
 def calcularNotaDasEscolas(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 ### Avaliações
 # POST
@@ -205,7 +299,10 @@ def calcularNotaDasEscolas(request):
 ## TODO
 @api_view(['GET','POST'])
 def publicarAvaliacao(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # GET
 # /avaliacoes/ler
@@ -213,7 +310,10 @@ def publicarAvaliacao(request):
 ## TODO
 @api_view(['GET'])
 def recuperarAvaliacao(request, pk):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # POST
 # /avaliacoes/atualizar
@@ -221,7 +321,10 @@ def recuperarAvaliacao(request, pk):
 ## TODO
 @api_view(['GET','POST'])
 def atualizarAvaliacao(request):
-  pass
+  try:
+    pass
+  except:
+    pass
 
 # POST
 # /avaliacoes/excluir
@@ -229,4 +332,7 @@ def atualizarAvaliacao(request):
 ## TODO
 @api_view(['GET','POST'])
 def excluirAvaliacao(request):
-  pass
+  try:
+    pass
+  except:
+    pass

@@ -20,6 +20,9 @@ class Escola(models.Model):
   ensinoFundamental = models.BooleanField(default=True)
   ensinoMedio = models.BooleanField(default=True)
 
+  def __str__(self):
+    return self.nome
+
 class Usuario(models.Model):
   usuario = models.OneToOneField(User, related_name='usuário', on_delete=models.CASCADE, blank=False)
   dataNascimento = models.DateField(default=timezone.now(), blank=False)
@@ -27,6 +30,9 @@ class Usuario(models.Model):
   escolaAtual = models.ForeignKey(Escola, on_delete=models.CASCADE)
   cep = models.CharField(max_length=8)
   telefone = models.CharField(max_length=11)
+
+  def __str__(self):
+    return self.usuario
 
 class Avaliacao(models.Model):
   ano = models.DateField(default=timezone.now())
@@ -38,6 +44,9 @@ class Avaliacao(models.Model):
   alimentacaoEscolar = models.IntegerField(default=0)
   comentario = models.CharField(max_length=256)
   rankingDaAvaliacao= models.FloatField(default=1)
+
+  def __str__(self):
+    return '%s, %s'%(self.avaliador.nome + self.escolaAvaliada.nome)
 
 class Hora(models.Model):
   hora = models.DateTimeField(default=timezone.now())
