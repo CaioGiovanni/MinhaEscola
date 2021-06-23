@@ -11,7 +11,7 @@ class HoraSerializador(serializers.HyperlinkedModelSerializer):
 class EscolaSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Escola
-    fields = ['id', 'pk', 'nome', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'cep', 'telefone', 'descricao', 'site', 'foto', 'preAlfa', 'ensinoFundamental', 'ensinoMedio']
+    fields = ['pk', 'nome', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'cep', 'telefone', 'descricao', 'site', 'foto', 'preAlfa', 'ensinoFundamental', 'ensinoMedio']
 
 # class EscolaSerializadorUnitario(serializers.Serializer):
 #   class Meta:
@@ -26,7 +26,7 @@ class UsuarioSerializador(serializers.HyperlinkedModelSerializer):
 class AvaliacaoSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Avaliacao
-    fields = ['ano', 'avaliador', 'escolaAvaliada', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'comentario', 'rankingDaAvaliacao']
+    fields = ['pk', 'ano', 'avaliador', 'escolaAvaliada', 'estruturaEscolar', 'qualidadeEscolar', 'segurancaEscolar', 'alimentacaoEscolar', 'comentario', 'rankingDaAvaliacao']
 
 class UserSerializador(serializers.HyperlinkedModelSerializer):
   class Meta:
