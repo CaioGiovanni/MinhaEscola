@@ -27,7 +27,7 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  getSchool(cep: any) {
-    return this.EscolaList?.results.find((escola: any) => escola.cep === cep);
+  getSchool(pk: any) {
+    return this.EscolaList?.results.find((escola: any) => escola.pk === parseInt(pk));
   }
 }

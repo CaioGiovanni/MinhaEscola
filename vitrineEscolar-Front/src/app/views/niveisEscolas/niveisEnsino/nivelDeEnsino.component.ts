@@ -31,7 +31,7 @@ export class NivelDeEnsinoComponent implements OnInit {
   }
 
   detail(dataItem: any): void {
-    this.router.navigate(['detail', dataItem.cep])
+    this.router.navigate(['detail', dataItem.pk])
     this.service.selectedSchool = dataItem;
   }
 

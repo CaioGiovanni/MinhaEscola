@@ -12,7 +12,7 @@
         <h1 *ngIf="nivelDeEnsino === undefined">Todos os níveis de ensino</h1>
         <ol>
           <li><a [routerLink]="''">Home</a></li>
-          <li>Níveis de ensino</li>
+          <li><a [routerLink]="['/NivelDeEnsino']" routerLinkActive="active">Níveis de ensino</a></li>
           <li *ngIf="nivelDeEnsino === 'Pré-alfabetização'">Pré-alfabetização</li>
           <li *ngIf="nivelDeEnsino === 'EnsinoFundamental'">Ensino Fundamental</li>
           <li *ngIf="nivelDeEnsino === 'EnsinoMédio'">Ensino Médio</li>

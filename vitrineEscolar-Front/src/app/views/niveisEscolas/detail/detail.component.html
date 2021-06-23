@@ -1,17 +1,18 @@
 <app-navbar></app-navbar>
 
-<main id="main">
+<main id="main" *ngIf="selectedSchool">
 
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h1>Pré-alfabetização</h1>
+        
+        <h1>{{selectedSchool.nome}}</h1>
         <ol>
           <li><a [routerLink]="''">Home</a></li>
-          <li>Níveis de ensino</li>
-          <li>Pré-alfabetização</li>
+          <li><a [routerLink]="['/NivelDeEnsino']" routerLinkActive="active">Níveis de ensino</a></li>
+          <li>{{selectedSchool.nome}}</li>
         </ol>
       </div>
 
@@ -20,7 +21,7 @@
 
   <table class="container portfolio-info">
     <tbody>
-      <tr *ngIf="selectedSchool">
+      <tr>
         <td>
           <!-- ======= Portfolio Details Section ======= -->
           <section id="portfolio-details" class="portfolio-details">
@@ -45,7 +46,6 @@
                   <div class="portfolio-info">
                     
 
-                    <h3>{{selectedSchool.nome}}</h3>
                     <ul>
                       <li><strong>Segurança</strong>: {{selectedSchool.segurancaEscolar}}</li>
                       <div class="rating"> 
