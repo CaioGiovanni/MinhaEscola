@@ -23,10 +23,19 @@ export class FooterComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.input);
+    this.service.loginUser(this.input).subscribe(
+      response => {
+        console.log(response);
+        alert('Usuário' + this.input.username + 'logado.');
+      },
+      error => {
+        console.log('error', error);
+      }
+    )
   }
 
   disconnect(): void {
+    localStorage.clear();
     this.logged = false;
   }
 }

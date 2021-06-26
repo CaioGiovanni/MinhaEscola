@@ -30,4 +30,10 @@ export class DetailComponent implements OnInit {
   getSchool(pk: any) {
     return this.EscolaList?.results.find((escola: any) => escola.pk === parseInt(pk));
   }
+
+  avalia() {
+    if (localStorage.getItem("currentUser") === undefined) {
+      alert('Nenhum usuário encontrado. Por favor, realize o login.')
+    }
+  }
 }
