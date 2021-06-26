@@ -74,6 +74,7 @@ class UsuarioLogin(forms.Form):
     bancoUser = User.objects.get(username = usuario)
     bancoUsuario = Usuario.objects.get(pk = bancoUser.pk)
     return bancoUsuario
+    pass
 
 
 ## Recuperar informacao de usuarios. Precisa ser ADM
