@@ -80,8 +80,12 @@ def novoUsuario(request):
       return Response(formulario.clean_json())
     elif request.method == 'POST':
       formulario = UsuarioFormulario(request.data)
+      # print(formulario)
       if (formulario.is_valid()):
         if (formulario.is_avaliable()):
+          formulario.salvar_user()
+          # usueeer = formulario.retornar_usuario()
+          # print(usueeer)
           return Response({'mensagem': 'O usuario agora está cadastrado.'})
         else:
           return Response({'mensagem': 'Email ou usuário já cadastrado.'})
@@ -119,12 +123,13 @@ def perfilUsuario(request):
   #   return Response({'mensagem':'Você não está conectado', 'erro':True})
 
 
-## TODO Atualizar o perfil
+## Atualizar o perfil
 ##/usuario/atualizar
 @api_view(['GET','POST'])
 def atualizarUsuario(request):
   try:
     if (request.method == 'POST'):
+
       if (request.user.is_authenticated):
         return Response ({'mensagem': 'Usuario autenticado.'})
       elif ('Authorization' in request.headers):
@@ -181,10 +186,12 @@ def recuperarUsuario(request):
 
 
 ## Não serve para nada.
-@api_view(['POST'])
+@api_view(['GET'])
 def usuarioToken(request):
   headers = request.headers
-  # print(headers)
+  print()
+  print(headers)
+  print()
   # token = headers['Authorization'].split(' ')[1]
   autenticacao = JWTAuthentication()
   # autenticacao = JWTTokenUserAuthentication()
@@ -209,6 +216,7 @@ def loginUsuario(request):
     pass
 
 
+######### MENOR URGÊNCIA
 ### Escola
 # POST
 # /escola/criar
@@ -218,7 +226,8 @@ def loginUsuario(request):
 def criarEscola(request):
   try:
     if (request.method == 'POST'):
-      pass
+      if (request.user.is_authenticated and request.user.is_superuser):
+        return Response({'mensagem': 'Escola criada'})
     elif (request.method == 'GET'):
       formulario = EscolaFormulario()
       return Response(formulario.clean_json())
@@ -291,6 +300,8 @@ def calcularNotaDasEscolas(request):
     pass
   except:
     pass
+
+
 
 ### Avaliações
 # POST
