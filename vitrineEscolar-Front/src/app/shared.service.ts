@@ -16,6 +16,10 @@ selectedSchool: any;
     return this.http.get<any[]>(this.APIUrl + "/api/escola/");
   }
 
+  registerUser(userdata: any):Observable<any>{
+    return this.http.post(this.APIUrl + "/api/user/", userdata);
+  }
+
   /*addEscola(val:any){
     return this.http.post<any[]>(this.APIUrl + "/api/escola/", val);
   }

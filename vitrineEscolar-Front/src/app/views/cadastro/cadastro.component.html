@@ -5,19 +5,19 @@
     <div class="wrapper wrapper--w680">
         <div class="card card-4">
             <div class="card-body">
-                <h2 class="title">Cadastro</h2>
+                <h2 class="title">Informações do Usuário</h2>
                 <form method="POST">
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Nome</label>
-                                <input class="input--style-4" type="text" name="first_name">
+                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.first_name">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Sobrenome</label>
-                                <input class="input--style-4" type="text" name="last_name">
+                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.last_name">
                             </div>
                         </div>
                     </div>
@@ -51,13 +51,28 @@
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Email</label>
-                                <input class="input--style-4" type="email" name="email">
+                                <input class="input--style-4" type="email" name="email"  [(ngModel)]="input.email">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Telefone</label>
                                 <input class="input--style-4" type="text" name="phone">
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="title">Credenciais de Cadastro</h2>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Nome de Usuário</label>
+                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.username">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Senha</label>
+                                <input class="input--style-4" type="text" name="first_name" [(ngModel)]="input.password">
                             </div>
                         </div>
                     </div>
@@ -74,7 +89,7 @@
                         </div>
                     </div> -->
                     <div class="p-t-15">
-                        <button class="btn btn--radius-2 btn--blue" type="submit">Cadastrar</button>
+                        <button class="btn btn--radius-2 btn--blue" type="submit" (click)="register()">Cadastrar</button>
                     </div>
                 </form>
             </div>
