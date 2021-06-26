@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NivelDeEnsinoComponent implements OnInit {
   
+  nomeDaEscola: any;
   EscolaList:any=[];
   nivelDeEnsino: any;
 
@@ -27,12 +28,35 @@ export class NivelDeEnsinoComponent implements OnInit {
       this.EscolaList=data;
       this.EscolaList=this.EscolaList?.results;
       this.EscolaList=this.getSchoolsByNivel(this.nivelDeEnsino);
+
+      this.route.queryParams.subscribe(params => {
+        const nome = params['nome'];
+        this.nomeDaEscola = nome;
+      });
+
+      if (this.nomeDaEscola != undefined) {
+        this.EscolaList = this.getSchoolByName();
+      }
+
     });
   }
 
   detail(dataItem: any): void {
     this.router.navigate(['detail', dataItem.pk])
     this.service.selectedSchool = dataItem;
+  }
+
+  goToFilterSchool(): void {
+    if (this.nivelDeEnsino != undefined) {
+      this.router.navigate([ 'NivelDeEnsino', this.nivelDeEnsino], { queryParams: { nome: this.nomeDaEscola } });
+    }
+    else {
+      this.router.navigate([ 'NivelDeEnsino' ], { queryParams: { nome: this.nomeDaEscola } });
+    }
+  }
+
+  getSchoolByName(): void {
+    return this.EscolaList.filter((escola: any) => escola.nome.includes(this.nomeDaEscola));
   }
 
   getSchoolsByNivel(nivel: any) {

@@ -25,7 +25,7 @@
   <div class="container">
     <div class="row height d-flex justify-content-center align-items-center padding">
         <div class="col-md-8">
-            <div class="search"> <i class="fa fa-search"></i> <input type="text" class="form-control" placeholder="Nome da escola"> <button class="btn btn-primary">Pesquisar</button> </div>
+            <div class="search"> <i class="fa fa-search"></i> <input type="text" class="form-control" placeholder="Nome da escola" [(ngModel)]="nomeDaEscola"> <button class="btn btn-primary" (click)="goToFilterSchool()">Pesquisar</button> </div>
         </div>
     </div>
   </div>

@@ -6,13 +6,13 @@
       <div class="carousel-container">
         <h2 class="animate__animated animate__fadeInDown">{{EscolaActiveCarrousel.nome}}</h2>
         <p class="animate__animated animate__fadeInUp">{{EscolaActiveCarrousel.descricao}}</p>
-        <div class="rating animate__animated animate__fadeInUp"> 
+        <!--<div class="rating animate__animated animate__fadeInUp"> 
           <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> 
           <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
           <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
           <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
           <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-        </div>
+        </div>-->
         <a (click)="detail(EscolaActiveCarrousel)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
       </div>
     </div>
@@ -22,13 +22,13 @@
       <div class="carousel-container">
         <h2 class="animate__animated animate__fadeInDown">{{escola.nome}}</h2>
         <p class="animate__animated animate__fadeInUp">{{escola.descricao}}</p>
-        <div class="rating animate__animated animate__fadeInUp"> 
+        <!--<div class="rating animate__animated animate__fadeInUp"> 
           <input type="radio" name="rating" value="5" id="10"><label for="10">☆</label> 
           <input type="radio" name="rating" value="4" id="9"><label for="9">☆</label> 
           <input type="radio" name="rating" value="3" id="8"><label for="8">☆</label> 
           <input type="radio" name="rating" value="2" id="7"><label for="7">☆</label> 
           <input type="radio" name="rating" value="1" id="6"><label for="6">☆</label>
-        </div>
+        </div>-->
         <a (click)="detail(escola)" [routerLink]="['/detail']" routerLinkActive="active" class="btn-get-started animate__animated animate__fadeInUp scrollto">Detalhes</a>
       </div>
     </div>

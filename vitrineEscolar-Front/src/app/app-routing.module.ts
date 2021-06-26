@@ -53,6 +53,11 @@ const routes: Routes = [
 
   },
   {
+    path:'NivelDeEnsino/:nome',
+    component: NivelDeEnsinoComponent
+
+  },
+  {
     path:'NivelDeEnsino',
     component: NivelDeEnsinoComponent
 
