@@ -68,7 +68,12 @@ class UsuarioLogin(forms.Form):
   senha = forms.CharField(label='senha', max_length=100)
 
   def perfil_usuario(self):
-    pass
+    usuario = self.cleaned_data['usuario']
+    senha = self.cleaned_data['senha']
+
+    bancoUser = User.objects.get(username = usuario)
+    bancoUsuario = Usuario.objects.get(pk = bancoUser.pk)
+    return bancoUsuario
 
 
 ## Recuperar informacao de usuarios. Precisa ser ADM
