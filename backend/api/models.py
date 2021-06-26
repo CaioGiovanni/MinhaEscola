@@ -11,6 +11,7 @@ class Escola(models.Model):
   qualidadeEscolar = models.FloatField(default=0)
   segurancaEscolar = models.FloatField(default=0)
   alimentacaoEscolar = models.FloatField(default=0)
+  # notaTotal = models.FloatField(default=0)
   cep = models.CharField(max_length=8)
   telefone = models.CharField(max_length=10)
   descricao = models.CharField(max_length=4096, default = 'texto')
@@ -32,7 +33,7 @@ class Usuario(models.Model):
   telefone = models.CharField(max_length=11)
 
   def __str__(self):
-    return self.usuario
+    return self.usuario.username + ' ' + self.usuario.first_name + ' ' + self.usuario.last_name
 
 class Avaliacao(models.Model):
   ano = models.DateField(default=timezone.now())
