@@ -23,7 +23,7 @@ export class FooterComponent implements OnInit {
       password: ''
     };
     this.logged = false;
-    if (localStorage.getItem('Access key') !== undefined){
+    if (localStorage.getItem('Access key') !== null){
       this.logged = true;
     }
   }
@@ -44,6 +44,7 @@ export class FooterComponent implements OnInit {
       },
       error => {
         console.log('error', error);
+        alert("Não foi possível realizar o login.");
       }
     )
   }
