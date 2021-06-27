@@ -7,7 +7,7 @@ from rest_framework import serializers, viewsets
 from rest_framework import permissions
 from rest_framework.views import exception_handler
 from .models import Hora, Escola, Usuario, Avaliacao
-from .serializers import EscolaSerializadorTemporario, HoraSerializador, EscolaSerializador, UsuarioSerializador, AvaliacaoSerializador, UserSerializador
+from .serializers import EscolaSerializadorTemporario, HoraSerializador, EscolaSerializador, SerializadorAlternativoUsuario, UsuarioSerializador, AvaliacaoSerializador, UserSerializador
 from django.utils import timezone
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
@@ -46,7 +46,7 @@ class UserViewSet(viewsets.ModelViewSet):
   # queryset = User.objects.filter(username=sessaoAtual.get_username())
   queryset = User.objects.all()
   serializer_class = UserSerializador
-  permission_classes = [permissions.IsAuthenticated]
+  permission_classes = [permissions.IsAdminUser]
   # def get_queryset(self):
   #   sessaoAtual = self.request.user
   #   queryset =  User.objects.filter(username=sessaoAtual.get_username())
@@ -70,7 +70,7 @@ def escolaView(request, pk = 1):
 
 
 ### Funcoes do usuário
-## TODO cadastrar o usuario
+## cadastrar o usuario
 ##/usuario/criar
 @api_view(['GET','POST'])
 def novoUsuario(request):
@@ -95,22 +95,40 @@ def novoUsuario(request):
     print(erro)
     return Response({'mensagem': 'Vish 000: Houve um erro.'})
 
-## TODO retornar o perfil
+## retornar o perfil
 ##/usuario/
 ##/usuario/ler
 @api_view(['GET', 'POST'])
 def perfilUsuario(request):
   try:
     if (request.user.is_authenticated):
-      return Response ({'mensagem': 'Usuario autenticado.'})
+      usuario = User.objects.get(username = request.user.username)
+      userSerializado = UserSerializador(usuario).data
+      usuarioCustom = Usuario.objects.get(pk = usuario.pk)
+      # serializado = SerializadorAlternativoUsuario(userSerializado)
+      serializado = UsuarioSerializador(usuarioCustom, context={'request': request})
+      escola = EscolaSerializador(serializado['escolaAtual']).data
+      serializado['escolaAtual'] = escola
+      serializado['usuario'] = userSerializado
+      return Response ({'mensagem': 'Usuario autenticado.', 'usuario':serializado})
     elif ('Authorization' in request.headers):
       try:
-        return Response ({'mensagem': 'Usuario autenticado.'})
+        autenticacao = JWTAuthentication()
+        usuario, token = autenticacao.authenticate(request)
+        userSerializado = UserSerializador(usuario).data
+        usuarioCustom = Usuario.objects.get(pk = usuario.pk)
+        # serializado = SerializadorAlternativoUsuario(userSerializado)
+        serializado = UsuarioSerializador(usuarioCustom, context={'request': request}).data
+        escola = EscolaSerializador(usuarioCustom.escolaAtual).data
+        serializado['escolaAtual'] = escola
+        serializado['usuario'] = userSerializado
+        return Response ({'mensagem': 'Usuario autenticado.', 'usuario':serializado})
       except:
         return Response ({'mensagem': 'Vish 001: Usuário invalido.'})
     else:
       return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
   except Exception as erro:
+    # print(erro)
     return Response({'mensagem': 'Vish 000: Houve um erro.'})
   # if (request.user.is_authenticated):
   #   user = request.user
@@ -129,16 +147,38 @@ def perfilUsuario(request):
 def atualizarUsuario(request):
   try:
     if (request.method == 'POST'):
-
-      if (request.user.is_authenticated):
-        return Response ({'mensagem': 'Usuario autenticado.'})
-      elif ('Authorization' in request.headers):
-        try:
-          return Response ({'mensagem': 'Usuario autenticado.'})
-        except:
-          return Response ({'mensagem': 'Vish 001: Usuário invalido.'})
+      formulario = UsuarioFormulario(request.data)
+      usuario = User.objects.get(username = request.data['usuario'])
+      # print(usuario.check_password(request.data['senha']))
+      # print(request.data['novaSenha'] == request.data['confirmarSenha'])
+      if (usuario.check_password(request.data['senha'])):
+        if (request.data['novaSenha'] == request.data['confirmarSenha']):
+          if (formulario.is_valid()):
+            formulario.atualizar_user()
+            return Response({'mensagem': 'Usuário atualizado.'})
+          else:
+            return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
+        else:
+          return Response({'mensagem': 'Vish 004: as senhas estão diferentes'})
       else:
-        return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
+        return Response({'mensagem': 'Vish 001: Usuário inválido'})
+
+      # if (request.user.is_authenticated):
+
+      #   if (True):
+      #     formulario = UsuarioFormulario(request.data)
+      #     return Response ({'mensagem': 'Usuario alterado.'})
+      #   else:
+      #     return Response ({'mensagem': 'Vish 003: Usuário não autenticado.'})
+      # elif ('Authorization' in request.headers):
+      #   try:
+      #     autenticacao = JWTAuthentication()
+      #     usuario, token = autenticacao.authenticate(request)
+      #     return Response ({'mensagem': 'Usuario autenticado.'})
+      #   except:
+      #     return Response ({'mensagem': 'Vish 001: Usuário invalido.'})
+      # else:
+      #   return Response ({'mensagem': 'Vish 002: Formulario incorreto.'})
     else:
       formulario = UsuarioFormulario()
       return Response(formulario.clean_json())
@@ -149,6 +189,7 @@ def atualizarUsuario(request):
 ##/usuario/excluir
 @api_view(['GET','POST'])
 def excluirUsuario(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     if (request.user.is_authenticated):
       return Response ({'mensagem': 'Perfil excluído.'})
@@ -166,6 +207,7 @@ def excluirUsuario(request):
 ##/usuario/recuperar
 @api_view(['GET','POST'])
 def recuperarUsuario(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     if (request.user.is_authenticated):
       if (request.user.is_superuser):
@@ -210,6 +252,7 @@ def usuarioToken(request):
 ##não serve para nada
 @api_view(['GET', 'POST'])
 def loginUsuario(request):
+  return Response({'mensagem': 'Vish 667: Não estamos trabalhando nisso.'})
   try:
     pass
   except:
@@ -224,6 +267,7 @@ def loginUsuario(request):
 ## TODO
 @api_view(['GET','POST'])
 def criarEscola(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     if (request.method == 'POST'):
       if (request.user.is_authenticated and request.user.is_superuser):
@@ -234,27 +278,48 @@ def criarEscola(request):
   except:
     pass
 
+## Prioridade
 # GET
 # /escola/ler/pkid
 # Read          = {filtros} retorna {Escolas} ***
-## TODO
 @api_view(['GET'])
-def recuperarEscola(request, idEscola, idAvaliacao):
+def recuperarEscola(request, idEscola = 1):
   try:
-    pass
-  except:
-    pass
+    escola = Escola.objects.get(pk = idEscola)
+    # print(escola)
+    avaliacoes = Avaliacao.objects.filter(escolaAvaliada = escola) ## isso precisa estar em um try?
+    escolaS = EscolaSerializador(escola)
+    avaliacoesSerializadas = []
+    for i in avaliacoes:
+      data = AvaliacaoSerializador(i, context={'request': request}).data
+      # print(i.avaliador)
+      # data['usuario'] = UsuarioSerializador(i.avaliador, context={'request': request}).data
+      data['avaliador'] = i.avaliador.pk
+      data['usuario'] = "%s %s"%(i.avaliador.usuario.first_name, i.avaliador.usuario.last_name)
+      avaliacoesSerializadas.append(data)
+      # print(data)
+    # print(avaliacoesSerializadas)
+    return Response({'mensagem': 'Encontramos a escola.', 'escola': escolaS.data, 'avaliacoes': [avaliacoesSerializadas]})
+  except Exception as erro:
+    return Response({'mensagem': 'Vish 404: objeto não encontrado.'})
 
+## Prioridade
 # GET
-# /escola/avaliacoes/pkid
+# /escola/avaliacoes/pkid/pkid
 # Read          = {filtros} retorna {Escolas} ***
-## TODO
 @api_view(['GET'])
-def recuperarAvaliacoesDaEscola(request):
+def recuperarAvaliacoesDaEscola(request, idEscola = 1, idAvaliacao = 1):
   try:
-    pass
+    escola = Escola.objects.get(pk = idEscola)
+    escolaSerial = EscolaSerializador(escola, context={'request': request}).data
+    avaliacao = Avaliacao.objects.get(pk = idAvaliacao)
+    serializado = AvaliacaoSerializador(avaliacao, context={'request': request}).data
+    serializado['escolaAvaliada'] = escolaSerial
+    serializado['avaliador'] = avaliacao.avaliador.pk
+    serializado['usuario'] = "%s %s"%(avaliacao.avaliador.usuario.first_name, avaliacao.avaliador.usuario.last_name)
+    return Response({'mensagem': 'Encontramos a avaliação.', 'avaliacao': serializado})
   except:
-    pass
+    return Response({'mensagem': 'Vish 404: objeto não encontrado.'})
 
 
 # POST
@@ -263,6 +328,7 @@ def recuperarAvaliacoesDaEscola(request):
 ## TODO
 @api_view(['GET','POST'])
 def atualizarEscola(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     pass
   except:
@@ -274,6 +340,7 @@ def atualizarEscola(request):
 ## TODO
 @api_view(['GET','POST'])
 def excluirEscola(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     pass
   except:
@@ -285,11 +352,13 @@ def excluirEscola(request):
 ## TODO
 @api_view(['GET','POST'])
 def importarEscolas(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     pass
   except:
     pass
 
+## Prioridade
 # POST
 # /escola/calcular
 # CalcularNotas = headers {Authorization} retorna {mensagem} *
@@ -297,45 +366,136 @@ def importarEscolas(request):
 @api_view(['GET','POST'])
 def calcularNotaDasEscolas(request):
   try:
-    pass
+    return Response({'mensagem': 'resolvido.'})
   except:
-    pass
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
 
-
+def calcularNotaDaEscola(escola):
+  avaliacoes = Avaliacao.objects.filter(escolaAvaliada = escola)
+  estruturaEscolar = 0.0
+  qualidadeEscolar = 0.0
+  segurancaEscolar = 0.0
+  alimentacaoEscolar = 0.0
+  tamanho = float(len(avaliacoes))
+  for i in avaliacoes:
+    estruturaEscolar += (i.estruturaEscolar)/tamanho
+    qualidadeEscolar += (i.qualidadeEscolar)/tamanho
+    segurancaEscolar += (i.segurancaEscolar)/tamanho
+    alimentacaoEscolar += (i.alimentacaoEscolar)/tamanho
+  escola.estruturaEscolar = estruturaEscolar
+  escola.qualidadeEscolar = qualidadeEscolar
+  escola.segurancaEscolar = segurancaEscolar
+  escola.alimentacaoEscolar = alimentacaoEscolar
+  # escola.notaTotal = 5.0
+  escola.save()
 
 ### Avaliações
 # POST
 # /avaliacoes/criar
 # Create = headers {Authorization} body {Avaliação} retorna {mensagem} **
-## TODO
 @api_view(['GET','POST'])
 def publicarAvaliacao(request):
   try:
-    pass
-  except:
-    pass
+    if (request.method == 'POST'):
+      formulario = AvaliacaoFormulario(request.data)
+      # print(formulario.cleaned_data['avaliador'])
+      # formulario.is_valid()
+      # formulario.salvar()
+      if (not formulario.is_valid()):
+        return Response({'mensagem': 'Vish 003: formulário inválido'})
+      elif (not formulario.is_avaliable()):
+        return Response({'mensagem': 'Vish 007: esse formulario não é secreto'})
+      elif (request.user.is_authenticated):
+        usuario = request.user
+        usuarioCustom = Usuario.objects.get(pk = usuario.pk)
+        if (usuarioCustom == formulario.cleaned_data['avaliador'] and usuarioCustom.escolaAtual == formulario.cleaned_data['escolaAvaliada']):
+          formulario.salvar()
+          calcularNotaDaEscola(usuarioCustom.escolaAtual)
+          return Response({'mensagem': 'resolvido.'})
+        else:
+          ({'mensagem': 'Vish 003: Usuário não autenticado.'})
+      elif ('Authorization' in request.headers):
+        autenticacao = JWTAuthentication()
+        usuario, token = autenticacao.authenticate(request)
+        usuarioCustom = Usuario.objects.get(pk = usuario.pk)
+        if (usuarioCustom == formulario.cleaned_data['avaliador'] and usuarioCustom.escolaAtual == formulario.cleaned_data['escolaAvaliada']):
+          formulario.salvar()
+          calcularNotaDaEscola(usuarioCustom.escolaAtual)
+          return Response({'mensagem': 'resolvido.'})
+        else:
+          return Response({'mensagem': 'Vish 003: Usuário não autenticado.'})
+      else:
+        return Response({'mensagem': 'Vish 001: Usuario não autenticado.'})
+    else:
+      return Response({'mensagem': 'Vish 101: erro no formulário'})
+  except Exception as erro:
+    print(erro)
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
+
 
 # GET
-# /avaliacoes/ler
+# /avaliacoes/ler/pkid
 # Read   = {Escola} retorna {Avaliações}
-## TODO
 @api_view(['GET'])
-def recuperarAvaliacao(request, pk):
+def recuperarAvaliacao(request, pk = 1):
   try:
-    pass
-  except:
-    pass
+    avaliacao = Avaliacao.objects.get(pk = pk)
+    serializado = AvaliacaoSerializador(avaliacao, context={'request': request}).data
+    escola = EscolaSerializador(avaliacao.escolaAvaliada, context={'request': request}).data
+    
+    serializado['escolaAvaliada'] = escola
+
+    serializado['avaliador'] = avaliacao.avaliador.pk
+    serializado['usuario'] = "%s %s"%(avaliacao.avaliador.usuario.first_name, avaliacao.avaliador.usuario.last_name)
+
+    return Response({'mensagem': 'resolvido.', 'avaliacao':serializado})
+  except Exception as erro:
+    print(erro)
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
+
 
 # POST
 # /avaliacoes/atualizar
 # Update = headers {Authorization} body {Avaliação} retorna {mensagem} **
-## TODO
 @api_view(['GET','POST'])
 def atualizarAvaliacao(request):
   try:
-    pass
-  except:
-    pass
+    if (request.method == 'POST'):
+      formulario = AvaliacaoFormulario(request.data)
+      # print(formulario.cleaned_data['avaliador'])
+      # formulario.is_valid()
+      # formulario.salvar()
+      if (not formulario.is_valid()):
+        return Response({'mensagem': 'Vish 003: formulário inválido'})
+      elif (formulario.is_avaliable()):
+        return Response({'mensagem': 'Vish 404: objeto não encontrado'})
+      elif (request.user.is_authenticated):
+        usuario = request.user
+        usuarioCustom = Usuario.objects.get(pk = usuario.pk)
+        if (usuarioCustom == formulario.cleaned_data['avaliador'] and usuarioCustom.escolaAtual == formulario.cleaned_data['escolaAvaliada']):
+          formulario.atualizar()
+          calcularNotaDaEscola(usuarioCustom.escolaAtual)
+          return Response({'mensagem': 'resolvido.'})
+        else:
+          ({'mensagem': 'Vish 003: Usuário não autenticado.'})
+      elif ('Authorization' in request.headers):
+        autenticacao = JWTAuthentication()
+        usuario, token = autenticacao.authenticate(request)
+        usuarioCustom = Usuario.objects.get(pk = usuario.pk)
+        if (usuarioCustom == formulario.cleaned_data['avaliador'] and usuarioCustom.escolaAtual == formulario.cleaned_data['escolaAvaliada']):
+          formulario.atualizar()
+          calcularNotaDaEscola(usuarioCustom.escolaAtual)
+          return Response({'mensagem': 'resolvido.'})
+        else:
+          return Response({'mensagem': 'Vish 003: Usuário não autenticado.'})
+      else:
+        return Response({'mensagem': 'Vish 001: Usuario não autenticado.'})
+    else:
+      return Response({'mensagem': 'Vish 101: erro no formulário'})
+  except Exception as erro:
+    print(erro)
+    return Response({'mensagem': 'Vish 000: Houve um erro.'})
+
 
 # POST
 # /avaliacoes/excluir
@@ -343,6 +503,7 @@ def atualizarAvaliacao(request):
 ## TODO
 @api_view(['GET','POST'])
 def excluirAvaliacao(request):
+  return Response({'mensagem': 'Vish 666: Estamos trabalhando nisso.'})
   try:
     pass
   except:

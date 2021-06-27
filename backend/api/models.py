@@ -44,10 +44,10 @@ class Avaliacao(models.Model):
   segurancaEscolar = models.IntegerField(default=0)
   alimentacaoEscolar = models.IntegerField(default=0)
   comentario = models.CharField(max_length=256)
-  rankingDaAvaliacao= models.FloatField(default=1)
+  rankingDaAvaliacao = models.FloatField(default=1)
 
   def __str__(self):
-    return '%s, %s'%(self.avaliador.nome + self.escolaAvaliada.nome)
+    return '%s, %s'%(self.avaliador.usuario.username, self.escolaAvaliada.nome)
 
 class Hora(models.Model):
   hora = models.DateTimeField(default=timezone.now())

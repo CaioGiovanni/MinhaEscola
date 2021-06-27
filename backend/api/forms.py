@@ -13,7 +13,8 @@ class UsuarioFormulario(forms.Form):
   sobrenome = forms.CharField(label='sobrenome', max_length=100, required=True)
   email = forms.EmailField(label='email', max_length=100, required=True)
   senha = forms.CharField(label='senha', max_length=100, required=True)
-  confirmarSenha = forms.CharField(label='senha', max_length=100, required=True)
+  novaSenha = forms.CharField(label='senha', max_length=100, required=False)
+  confirmarSenha = forms.CharField(label='senha', max_length=100, required=False)
   dataNascimento = forms.DateField()#required=True)
   # dataCadastro = forms.DateField(default=timezone.now())
   escolaAtual = forms.ModelChoiceField(queryset=Escola.objects.all())#, required=True)
@@ -50,7 +51,6 @@ class UsuarioFormulario(forms.Form):
     # saida_user = User(pk, username = usuario, first_name = nome, last_name = sobrenome, email = email, password = senha)
     saida_user.save()
 
-
     dataNascimento = self.cleaned_data['dataNascimento']
     escolaAtual = self.cleaned_data['escolaAtual']
     cep = self.cleaned_data['cep']
@@ -60,7 +60,30 @@ class UsuarioFormulario(forms.Form):
     saida_usuario.save()
   
   def atualizar_user(self):
-    pass
+    usuario = self.cleaned_data['usuario']
+    novaSenha = self.cleaned_data['novaSenha']
+    nome = self.cleaned_data['nome']
+    sobrenome = self.cleaned_data['sobrenome']
+
+    escolaAtual = self.cleaned_data['escolaAtual']
+    cep = self.cleaned_data['cep']
+    telefone = self.cleaned_data['telefone']
+    
+    OUser = User.objects.get(username = usuario)
+    OUsuario = Usuario.objects.get(pk = OUser.pk)
+
+    OUser.first_name = nome
+    OUser.last_name = sobrenome
+    OUser.set_password(novaSenha)
+
+    OUsuario.escolaAtual = escolaAtual
+    OUsuario.cep = cep
+    OUsuario.telefone = telefone
+
+    OUser.save()
+    OUsuario.save()
+
+
 
 ## Login, perfil, excluir
 class UsuarioLogin(forms.Form):
@@ -85,7 +108,6 @@ class UsuarioPesquisar(forms.Form):
     porUser = User.objects.filter(username = self.cleaned_data['usuarioPesquisado'])
     porNome = User.objects.filter(first_name = self.cleaned_data['nomePesquisado'])
     saida = porUser | porNome
-    print(saida)
     return saida
 
 
@@ -114,13 +136,78 @@ class EscolaFormulario(forms.Form):
 ## TODO
 ## Publicar e atualizar
 class AvaliacaoFormulario(forms.Form):
-  texto = forms.CharField(label='texto', max_length=100, required=True)
+  # texto = forms.CharField(label='texto', max_length=100, required=True)
+  ano = forms.DateField()
+  avaliador = forms.ModelChoiceField(queryset=Usuario.objects.all())
+  escolaAvaliada = forms.ModelChoiceField(queryset=Escola.objects.all())
+  estruturaEscolar = forms.IntegerField(min_value=0, max_value=5)
+  qualidadeEscolar = forms.IntegerField(min_value=0, max_value=5)
+  segurancaEscolar = forms.IntegerField(min_value=0, max_value=5)
+  alimentacaoEscolar = forms.IntegerField(min_value=0, max_value=5)
+  comentario = forms.CharField(max_length=256)
+  rankingDaAvaliacao = forms.FloatField(required=False)
 
   def clean_json(self):
     return {}
 
   def is_avaliable(self):
-    return True
+    avaliador = Avaliacao.objects.filter(avaliador = self.cleaned_data['avaliador'])
+    escola = Avaliacao.objects.filter(escolaAvaliada = self.cleaned_data['escolaAvaliada'])
+    combinacao = avaliador & escola
+    # print(combinacao)
+    if (list(combinacao) == []):
+      return True
+    else:
+      return False
+  
+  def salvar(self):
+    ano = self.cleaned_data['ano']
+    avaliador = self.cleaned_data['avaliador']
+    escolaAvaliada = self.cleaned_data['escolaAvaliada']
+    estruturaEscolar = self.cleaned_data['estruturaEscolar']
+    qualidadeEscolar = self.cleaned_data['qualidadeEscolar']
+    segurancaEscolar = self.cleaned_data['segurancaEscolar']
+    alimentacaoEscolar = self.cleaned_data['alimentacaoEscolar']
+    comentario = self.cleaned_data['comentario']
+    # rankingDaAvaliacao = self.cleaned_data['rankingDaAvaliacao']
+    avaliacao = Avaliacao.objects.create(ano = ano, 
+                                          avaliador = avaliador, 
+                                          escolaAvaliada = escolaAvaliada, 
+                                          estruturaEscolar = estruturaEscolar, 
+                                          qualidadeEscolar = qualidadeEscolar, 
+                                          segurancaEscolar = segurancaEscolar, 
+                                          alimentacaoEscolar = alimentacaoEscolar, 
+                                          comentario = comentario, 
+                                          rankingDaAvaliacao = 1.0)
+    # avaliacao.save()
+    
+
+  def atualizar(self):
+    ano = self.cleaned_data['ano']
+    avaliador = self.cleaned_data['avaliador']
+    escolaAvaliada = self.cleaned_data['escolaAvaliada']
+    estruturaEscolar = self.cleaned_data['estruturaEscolar']
+    qualidadeEscolar = self.cleaned_data['qualidadeEscolar']
+    segurancaEscolar = self.cleaned_data['segurancaEscolar']
+    alimentacaoEscolar = self.cleaned_data['alimentacaoEscolar']
+    comentario = self.cleaned_data['comentario']
+    # rankingDaAvaliacao = self.cleaned_data['rankingDaAvaliacao']
+
+    avaliacaoEscola = Avaliacao.objects.filter(escolaAvaliada = escolaAvaliada)
+    # print('Avaliação Escola', avaliacaoEscola)
+    avaliacao = avaliacaoEscola.get(avaliador = avaliador)
+    # print('Avaliação Avaliador', avaliacaoAvaliador)
+
+    avaliacao.ano = ano
+    avaliacao.estruturaEscolar = estruturaEscolar
+    avaliacao.qualidadeEscolar = qualidadeEscolar
+    avaliacao.segurancaEscolar = segurancaEscolar
+    avaliacao.alimentacaoEscolar = alimentacaoEscolar
+    avaliacao.comentario = comentario
+
+    avaliacao.save()
+
+  
 
 ## Excluir publicacao
 class AvaliacaoExcluir(forms.Form):

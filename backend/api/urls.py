@@ -20,26 +20,50 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
 
+
     ## Usuarios
-    path('usuariotoken/', views.usuarioToken),
+    path('usuariotoken/', views.usuarioToken), ## Inutil
+
     path('usuario/', views.perfilUsuario),
+
     path('usuario/ler/', views.perfilUsuario),
+
     path('usuario/criar/', views.novoUsuario),
+
     path('usuario/atualizar/', views.atualizarUsuario),
+
     path('usuario/excluir/', views.excluirUsuario),
+
     path('usuario/recuperar/', views.recuperarUsuario),
 
-    ## Avaliacao
+
+    ## Escolas
     path('escola/criar/', views.criarEscola),
+
     path('escola/ler/', views.recuperarEscola),
+    path('escola/ler/<int:idEscola>/', views.recuperarEscola),
+    
+    path('escola/avaliacoes/', views.recuperarAvaliacoesDaEscola),
+    path('escola/avaliacoes/<int:idEscola>/', views.recuperarAvaliacoesDaEscola),
+    path('escola/avaliacoes/<int:idEscola>/<int:idAvaliacao>/', views.recuperarAvaliacoesDaEscola),
+
     path('escola/atualizar/', views.atualizarEscola),
+
     path('escola/excluir/', views.excluirEscola),
+
     path('escola/importar/', views.importarEscolas),
+
     path('escola/calcular/', views.calcularNotaDasEscolas),
+
+
 
     ## Avaliacao
     path('avaliacoes/criar/', views.publicarAvaliacao),
+
     path('avaliacoes/ler/', views.recuperarAvaliacao),
+    path('avaliacoes/ler/<int:pk>/', views.recuperarAvaliacao),
+
     path('avaliacoes/atualizar/', views.atualizarAvaliacao),
+
     path('avaliacoes/excluir/', views.excluirAvaliacao),
 ]
