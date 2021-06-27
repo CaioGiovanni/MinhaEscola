@@ -6,22 +6,22 @@ import {Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-readonly APIUrl = "http://127.0.0.1:8000"
+readonly APIUrl = "http://127.0.0.1:8000/api/"
 selectedSchool: any;
 //readonly PhotoUrl = "http://127.0.0.1:8000/media"
 
   constructor(private http:HttpClient) { }
 
   getEscolaList():Observable<any[]>{
-    return this.http.get<any[]>(this.APIUrl + "/api/escola/");
+    return this.http.get<any[]>(this.APIUrl + "escola/");
   }
 
   registerUser(userdata: any):Observable<any>{
-    return this.http.post(this.APIUrl + "/api/user/", userdata);
+    return this.http.post(this.APIUrl + "usuario/criar/", userdata);
   }
 
   loginUser(userdata: any):Observable<any>{
-    return this.http.post(this.APIUrl + "/api/auth/user", userdata);
+    return this.http.post(this.APIUrl + "token/", userdata);
   }
 
   /*addEscola(val:any){

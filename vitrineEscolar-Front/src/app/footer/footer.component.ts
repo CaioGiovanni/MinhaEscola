@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { observable, Observable } from 'rxjs';
 import { SharedService} from 'src/app/shared.service';
 
+declare var closeForm: any;
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -11,6 +13,7 @@ export class FooterComponent implements OnInit {
 
   input: any;
   logged: any;
+  account: any;
 
   constructor(private service: SharedService) { }
 
@@ -20,13 +23,24 @@ export class FooterComponent implements OnInit {
       password: ''
     };
     this.logged = false;
+    if (localStorage.getItem('Access key') !== undefined){
+      this.logged = true;
+    }
+  }
+
+  CallCloseForm() {
+    closeForm();
   }
 
   login(): void {
     this.service.loginUser(this.input).subscribe(
       response => {
         console.log(response);
-        alert('Usuário' + this.input.username + 'logado.');
+        closeForm();
+        localStorage.setItem("Acess key", response.access);
+        localStorage.setItem("refresh key", response.refresh);
+        alert('Usuário ' + this.input.username + ' logado.');
+        this.logged = true;
       },
       error => {
         console.log('error', error);

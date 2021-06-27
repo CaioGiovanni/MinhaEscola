@@ -11,13 +11,13 @@
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Nome</label>
-                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.first_name">
+                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.nome">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Sobrenome</label>
-                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.last_name">
+                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.sobrenome">
                             </div>
                         </div>
                     </div>
@@ -26,12 +26,18 @@
                             <div class="input-group">
                                 <label class="label">Data de Nascimento</label>
                                 <div class="input-group-icon">
-                                    <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                    <input class="input--style-4 js-datepicker" type="text" name="birthday" [(ngModel)]="input.dataNascimento">
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">CEP</label>
+                                <input class="input--style-4" type="text" name="CEP" [(ngModel)]="input.cep">
+                            </div>
+                        </div>
+                        <!-- <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Gênero</label>
                                 <div class="p-t-10">
@@ -45,7 +51,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row row-space">
                         <div class="col-2">
@@ -57,7 +63,7 @@
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Telefone</label>
-                                <input class="input--style-4" type="text" name="phone">
+                                <input class="input--style-4" type="text" name="phone" [(ngModel)]="input.telefone">
                             </div>
                         </div>
                     </div>
@@ -66,28 +72,30 @@
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Nome de Usuário</label>
-                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.username">
+                                <input class="input--style-4" type="text" name="last_name" [(ngModel)]="input.usuario">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Senha</label>
-                                <input class="input--style-4" type="text" name="first_name" [(ngModel)]="input.password">
+                                <input class="input--style-4" type="password" name="first_name" [(ngModel)]="input.senha">
                             </div>
                         </div>
+                        <div class="input-group">
+                            <label class="label">Confirmar Senha</label>
+                            <input class="input--style-4" type="password" name="first_name" [(ngModel)]="input.confirmarSenha">
+                        </div>
                     </div>
-                    <!-- <div class="input-group">
-                        <label class="label">Subject</label>
+                    <div class="input-group">
+                        <label class="label" style="padding-right: 10px;">Escola que estuda atualmente:</label>
                         <div class="rs-select2 js-select-simple select--no-search">
-                            <select name="subject">
-                                <option disabled="disabled" selected="selected">Choose option</option>
-                                <option>Subject 1</option>
-                                <option>Subject 2</option>
-                                <option>Subject 3</option>
-                            </select>
+                            <select id="inputLocationType" name="location-type" required [(ngModel)]="input.escolaAtual"> <!-- <== changed -->
+                                <option selected="selected" disabled>Escolas...</option>
+                                <option *ngFor="let escola of EscolaList?.results" [ngValue]="escola.pk">{{ escola.nome }}</option>
+                              </select>
                             <div class="select-dropdown"></div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit" (click)="register()">Cadastrar</button>
                     </div>
