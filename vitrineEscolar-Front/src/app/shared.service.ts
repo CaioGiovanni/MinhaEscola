@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,10 @@ selectedSchool: any;
     return this.http.get<any[]>(this.APIUrl + "escola/");
   }
 
+  getEscola(pk: string):Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "escola/ler/" + pk);
+  }
+
   registerUser(userdata: any):Observable<any>{
     return this.http.post(this.APIUrl + "usuario/criar/", userdata);
   }
@@ -24,6 +28,25 @@ selectedSchool: any;
     return this.http.post(this.APIUrl + "token/", userdata);
   }
 
+  getAvaliacoes(escola: string):Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + "escola/ler/" + escola);
+  }
+
+  postAvaliacao(userdata: any):Observable<any>{
+    return this.http.post(this.APIUrl + "avaliacoes/criar/", userdata);
+  }
+
+  getUsuario():Observable<any>{
+    var reqHeader = new HttpHeaders({ 
+      //'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('Access key')
+   });
+    return this.http.get<any[]>(this.APIUrl + "usuario/ler/", { headers: reqHeader })
+  }
+
+  refreshKey():Observable<any>{
+    return this.http.post(this.APIUrl + "token/refresh/", {refresh: localStorage.getItem('refresh key')});
+  }
   /*addEscola(val:any){
     return this.http.post<any[]>(this.APIUrl + "/api/escola/", val);
   }

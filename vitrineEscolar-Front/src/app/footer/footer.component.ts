@@ -37,7 +37,7 @@ export class FooterComponent implements OnInit {
       response => {
         console.log(response);
         closeForm();
-        localStorage.setItem("Acess key", response.access);
+        localStorage.setItem("Access key", response.access);
         localStorage.setItem("refresh key", response.refresh);
         alert('Usuário ' + this.input.username + ' logado.');
         this.logged = true;

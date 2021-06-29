@@ -11,12 +11,20 @@ export class DetailComponent implements OnInit {
 
   EscolaList:any=[];
   selectedSchool:any;
+  input: any;
 
   constructor(private service:SharedService, private route: ActivatedRoute) { 
     this.route.params.subscribe(params => this.selectedSchool = params['id']);
   }
 
   ngOnInit(): void {
+    this.input = {
+      seguranca: 0,
+      estrutura: 0,
+      Merenda: 0,
+      Metodologia: 0,
+      comentario: ''
+    };
     this.refreshDepList();
   }
 
@@ -24,6 +32,11 @@ export class DetailComponent implements OnInit {
     this.service.getEscolaList().subscribe(data=>{
       this.EscolaList=data;
       this.selectedSchool = this.getSchool(this.selectedSchool);
+      console.log(this.selectedSchool.avaliacoes)
+      /*this.service.getEscola(this.selectedSchool).subscribe(data=>{
+        this.selectedSchool=data;
+        console.log(data)
+      });*/
     });
   }
 
@@ -32,8 +45,18 @@ export class DetailComponent implements OnInit {
   }
 
   avalia() {
-    if (localStorage.getItem("currentUser") === undefined) {
+    if (localStorage.getItem("Access key") === null) {
       alert('Nenhum usuário encontrado. Por favor, realize o login.')
+    }
+    else {
+      this.service.refreshKey().subscribe(data=>{
+        localStorage.setItem("Access key", data.access);
+        this.service.getUsuario().subscribe(data2=>{
+          console.log(data2.usuario.usuario.pk);
+          console.log(this.input)
+          // Falta adicionar escola avaliada e o ano
+        });
+      });
     }
   }
 }
