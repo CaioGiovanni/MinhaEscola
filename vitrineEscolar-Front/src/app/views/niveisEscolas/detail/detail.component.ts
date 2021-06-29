@@ -12,6 +12,7 @@ export class DetailComponent implements OnInit {
   EscolaList:any=[];
   selectedSchool:any;
   input: any;
+  data = new Date();
 
   constructor(private service:SharedService, private route: ActivatedRoute) { 
     this.route.params.subscribe(params => this.selectedSchool = params['id']);
@@ -19,11 +20,15 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.input = {
-      seguranca: 0,
-      estrutura: 0,
-      Merenda: 0,
-      Metodologia: 0,
-      comentario: ''
+      ano: this.pegaData(),
+      avaliador: -1,
+      escolaAvaliada: -1,
+      segurancaEscolar: 0,
+      estruturaEscolar: 0,
+      alimentacaoEscolar: 0,
+      qualidadeEscolar: 0,
+      comentario: '',
+      rankingDaAvaliacao: 1
     };
     this.refreshDepList();
   }
@@ -52,11 +57,29 @@ export class DetailComponent implements OnInit {
       this.service.refreshKey().subscribe(data=>{
         localStorage.setItem("Access key", data.access);
         this.service.getUsuario().subscribe(data2=>{
-          console.log(data2.usuario.usuario.pk);
-          console.log(this.input)
-          // Falta adicionar escola avaliada e o ano
+          this.input.avaliador = data2.usuario.usuario.pk;
+          this.input.escolaAvaliada = this.selectedSchool.pk;
+
+          this.service.postAvaliacao(this.input).subscribe(
+            response => {
+              console.log(response);
+              alert(response);
+            },
+            error => {
+              console.log('error', error);
+              alert("Não foi possível realizar a avaliação.");
+            }
+          )
         });
       });
     }
+  }
+
+  pegaData() {
+    var data = new Date();
+    var dia = data.getDate();
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+    return [dia, mes, ano].join('/');
   }
 }

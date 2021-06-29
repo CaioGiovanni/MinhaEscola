@@ -33,7 +33,11 @@ selectedSchool: any;
   }
 
   postAvaliacao(userdata: any):Observable<any>{
-    return this.http.post(this.APIUrl + "avaliacoes/criar/", userdata);
+    var reqHeader = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('Access key')
+   });
+    return this.http.post(this.APIUrl + "avaliacoes/criar/", userdata, { headers: reqHeader });
   }
 
   getUsuario():Observable<any>{
