@@ -35,7 +35,8 @@ export class CadastroComponent implements OnInit {
     this.service.registerUser(this.input).subscribe(
       response => {
         console.log(response);
-        alert('Usuário ' + this.input.usuario + ' cadastrado.');
+        alert(response.mensagem);
+        // alert('Usuário ' + this.input.usuario + ' cadastrado.');
       },
       error => {
         console.log('error', error);
