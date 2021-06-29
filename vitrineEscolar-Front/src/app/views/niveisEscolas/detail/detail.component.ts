@@ -63,8 +63,7 @@ export class DetailComponent implements OnInit {
 
           this.service.postAvaliacao(this.input).subscribe(
             response => {
-              console.log(response);
-              alert(response);
+              alert(response.mensagem);
             },
             error => {
               console.log('error', error);
