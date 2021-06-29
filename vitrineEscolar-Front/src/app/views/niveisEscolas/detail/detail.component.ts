@@ -11,6 +11,7 @@ export class DetailComponent implements OnInit {
 
   EscolaList:any=[];
   selectedSchool:any;
+  avaliacoes:any=[];
   input: any;
   data = new Date();
 
@@ -37,11 +38,11 @@ export class DetailComponent implements OnInit {
     this.service.getEscolaList().subscribe(data=>{
       this.EscolaList=data;
       this.selectedSchool = this.getSchool(this.selectedSchool);
-      console.log(this.selectedSchool.avaliacoes)
-      /*this.service.getEscola(this.selectedSchool).subscribe(data=>{
-        this.selectedSchool=data;
-        console.log(data)
-      });*/
+      this.service.getEscola(this.selectedSchool.pk).subscribe(data2=>{
+        this.selectedSchool=data2;
+        this.avaliacoes = this.selectedSchool.avaliacoes[0];
+        this.selectedSchool = this.selectedSchool.escola;
+      });
     });
   }
 

@@ -17,7 +17,7 @@ selectedSchool: any;
   }
 
   getEscola(pk: string):Observable<any[]>{
-    return this.http.get<any[]>(this.APIUrl + "escola/ler/" + pk);
+    return this.http.get<any[]>(this.APIUrl + "escola/ler/" + pk + "/");
   }
 
   registerUser(userdata: any):Observable<any>{
