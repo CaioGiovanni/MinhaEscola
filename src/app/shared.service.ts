@@ -6,7 +6,7 @@ import {Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-readonly APIUrl = "http://127.0.0.1:8000/api/"
+readonly APIUrl = "http://caire.pythonanywhere.com/api/"
 selectedSchool: any;
 //readonly PhotoUrl = "http://127.0.0.1:8000/media"
 
